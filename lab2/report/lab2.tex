@@ -22,7 +22,8 @@
 \paragraph{Вариант 32}
 
 Дана задача линейного программирования:
-\begin{equation*}
+\begin{equation}
+\label{eq:main}
 \begin{cases}
 	\max \left( 2 x_1 + 3 x_2 \right) \\
 	x_1 + x_2 \le 4.8 \\
@@ -30,23 +31,50 @@
 	x_1 \ge 0 \\
 	x_2 \ge 0
 \end{cases}
-\end{equation*}
+\end{equation}
 
 \section{Приведение к канонической форме}
 
-\begin{equation*}
+Приведём задачу к канонической форме при помощи введения новых переменных:
+
+\begin{equation}
 \begin{cases}
 	\max \left( 2 x_1 + 3 x_2 \right) \\
 	x_1 + x_2 + x_3 = 4.8 \\
 	-3 x_1 - x_2 + x_4 = -3.5 \\
 	x_i \ge 0, i = \overline{1,4}
 \end{cases}
-\end{equation*}
+\end{equation}
+$x_1$ и $x_2$ -- свободные переменные, $x_3$ и $x_4$ -- базисные переменные. 
 
 \section{Решение геометрическим методом}
 
-\section{Нахождение опорных точек}
+На рис. \ref{pic:geometric_solution} изображено графическое представление системы \ref{eq:main}.
 
+\begin{figure}[H]
+\begin{center}
+	\includegraphics[scale=1]{system}
+	\caption{Решение геометрическим методом}
+	\label{pic:geometric_solution}
+\end{center}
+\end{figure}
+
+Полученный выпуклый 4-угольник является областью допустимых решений. Зелеными точками на рисунке изображены допустимые опорные точки, красными -- недопустимые. Можно заметить, что максимальное значение в области допустимых значений прямая $2x_1 + 3x_2 = C$ принимает в точке $(0,\ 4.8)$, следовательно опорная точка $x_1 = 0$, $x_2 = 4.8$ является единственным решением задачи.
+
+\section{Нахождение опорных точек}
+\begin{equation}
+\begin{cases}
+	x_1 - x_2 = 1.6
+	\\
+	x_2 = 0
+\end{cases}
+\Rightarrow
+\begin{cases}
+	x_1 = 1.6
+	\\
+	x_2 = 0
+\end{cases}
+\end{equation}
 \section{Решение симплекс-методом в матричной форме}
 
 \section{Решение симплекс-методом в табличной форме}
