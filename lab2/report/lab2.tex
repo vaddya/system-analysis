@@ -35,13 +35,13 @@
 
 \section{Приведение к канонической форме}
 
-Приведём задачу к канонической форме при помощи введения новых переменных $x_3$ и $x_4$:
+Приведём задачу к канонической форме при помощи введения новых переменных $x_3$ и $x_4$ и домножения второго ограничения на $-1$:
 
 \begin{equation}
 \begin{cases}
 	\max \left( 2 x_1 + 3 x_2 \right) \\
 	x_1 + x_2 + x_3 = 4.8 \\
-	-3 x_1 - x_2 + x_4 = -3.5 \\
+	3 x_1 + x_2 - x_4 = 3.5 \\
 	x_i \ge 0, i = \overline{1,4}
 \end{cases}
 \end{equation}
@@ -60,28 +60,30 @@
 
 Полученный выпуклый 4-угольник является областью допустимых решений. Зелеными точками на рисунке изображены допустимые опорные точки, красными -- недопустимые. Можно заметить, что максимальное значение в области допустимых значений прямая $2x_1 + 3x_2 = C$ принимает в точке $x_1 = 0$, $x_2 = 4.8$, следовательно эта опорная точка и является единственным решением задачи.
 
-\section{Нахождение опорных точек}
+\section{Решение методом полного перебора опорных точек}
 
-\begin{enumerate}
-\setlength{\abovedisplayskip}{-10pt}
+\begin{enumerate}[leftmargin=*]
 \item 
+	\label{eq:bad_basis_1}
 	$\begin{cases}
 		x_1 + x_2 = 4.8 \\
-		-3x_1 - x_2 = -3.5
+		3x_1 + x_2 = 3.5
 	\end{cases}
 	\Rightarrow
 	\begin{cases}
 		x_2 = 4.8 - x_1 \\
-		3x_1 + 4.8 - x_1 = 3.5
+		2x_1 + 4.8 = 3.5
 	\end{cases}
 	\Rightarrow
 	\begin{cases}
 		x_1 = -0.65 \\
 		x_2 = 5.45
-	\end{cases}$
+	\end{cases}
+	\Rightarrow
+	f = 15.05$
 	
 \item
-	\label{eq:bad_basis_1}
+	\label{eq:opt_basis}
 	$\begin{cases}
 		x_1 + x_2 = 4.8 \\
 		x_1 = 0
@@ -90,7 +92,9 @@
 	\begin{cases}
 		x_1 = 0 \\
 		x_2 = 4.8
-	\end{cases}$
+	\end{cases}
+	\Rightarrow
+	f = 14.4$
 	
 \item
 	$\begin{cases}
@@ -101,7 +105,9 @@
 	\begin{cases}
 		x_1 = 4.8 \\
 		x_2 = 0
-	\end{cases}$
+	\end{cases}
+	\Rightarrow
+	f = 9.6$
 	
 \item
 	$\begin{cases}
@@ -112,7 +118,9 @@
 	\begin{cases}
 		x_1 = 0 \\
 		x_2 = 3.5
-	\end{cases}$
+	\end{cases}
+	\Rightarrow
+	f = 10.5$
 	
 \item
 	$\begin{cases}
@@ -123,26 +131,51 @@
 	\begin{cases}
 		x_1 = \frac{3.5}{3} \approx 1.17 \\
 		x_2 = 0
-	\end{cases}$
+	\end{cases}
+	\Rightarrow
+	f \approx 2.34$
 	
 \item 
 	\label{eq:bad_basis_2}
 	$\begin{cases}
 		x_1 = 0 \\
 		x_2 = 0
-	\end{cases}$
+	\end{cases}
+	\Rightarrow
+	f = 0$
 \end{enumerate}
 
-При проверке найденных опорных точек на допустимость в системе уравнений \ref{eq:main} видно, что точки \ref{eq:bad_basis_1} и \ref{eq:bad_basis_2} являются недопустимыми.
+При проверке найденных опорных точек на допустимость в системе уравнений \ref{eq:main} видно, что точки \ref{eq:bad_basis_1} и \ref{eq:bad_basis_2} являются недопустимыми. Максимальное значение функция принимает в точке \ref{eq:bad_basis_1}, но так как данная точка является недопустимой, оптимальной точкой является точка \ref{eq:opt_basis} ($x_1 = 0, x_2 = 4.8$).
 
 \section{Решение симплекс-методом в матричной форме}
 
-Перепишем систему \ref{eq:main} в матричной форме:
+Запишем матрицу коэффициентов системы \ref{eq:main}:
 \begin{equation*}
 A = 
 \begin{pmatrix}
 	1 & 1 & 1 & 0 \\
-	-3 & -1 & 0 & 1
+	3 & 1 & 0 & -1
+\end{pmatrix}
+\end{equation*}
+
+Из данной матрицы невозможно выделить единичную подматрицу, поэтому введем переменную $x_5$. Тогда система приобретает следующий вид:
+
+\begin{equation}
+\label{eq:canonic}
+\begin{cases}
+	\max \left( 2 x_1 + 3 x_2 \right) \\
+	x_1 + x_2 + x_3 = 4.8 \\
+	3 x_1 + x_2 - x_4 + x_5 = 3.5 \\
+	x_i \ge 0, i = \overline{1,5}
+\end{cases}
+\end{equation}
+
+Перепишем систему \ref{eq:canonic} в матричной форме:
+\begin{equation*}
+A = 
+\begin{pmatrix}
+	1 & 1 & 1 & 0 & 0\\
+	3 & 1 & 0 & -1 & 1
 \end{pmatrix},\text{ }
 b = 
 \begin{pmatrix}
@@ -151,11 +184,11 @@ b =
 \end{pmatrix},\text{ }
 c = 
 \begin{pmatrix}
-	2 & 3 & 0 & 0
+	2 & 3 & 0 & 0 & 0
 \end{pmatrix}^T,\text{ }
 x = 
 \begin{pmatrix}
-	x_1 & x_2 & x_3 & x_4
+	x_1 & \cdots & x_5 
 \end{pmatrix}^T
 \end{equation*}
 
@@ -168,9 +201,9 @@ x =
 \end{cases}
 \end{equation}
 
-Переменные $x_3$ и $x_4$ формируют единичную подматрицу $P = \left( \begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix} \right)$ в матрице $A$, следовательно выберем их как базисные переменные, а $x_1$ и $x_2$ как свободные переменные.
+Переменные $x_3$ и $x_5$ формируют единичную подматрицу $P = \left( \begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix} \right)$ в матрице $A$, следовательно выберем их как базисные переменные, а $x_1$, $x_2$ и $x_4$ как свободные переменные.
 
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
 
 \item
 $x^\text{Б} = P^{-1}b =
@@ -180,20 +213,20 @@ $x^\text{Б} = P^{-1}b =
 \end{pmatrix}
 \begin{pmatrix}
 	4.8 \\
-	-3.5
+	3.5
 \end{pmatrix} =
 \begin{pmatrix}
 	4.8 \\
-	-3.5
-\end{pmatrix} \ngeq 0
-\Rightarrow$ базис недопустим.
+	3.5
+\end{pmatrix} \geq 0
+\Rightarrow$ базис допустим.
 
 $c^\text{Б} = 
 \begin{pmatrix}
 	0 & 0
 \end{pmatrix}$
 
-Для свободных переменных найдем $\Delta_i$ ($i = 1, 2$):
+Для свободных переменных найдем $\Delta_i$ ($i = 1, 2, 4$):
 
 $\Delta_1 = c^\text{Б} P^{-1} A_1 - c_1 =
 \begin{pmatrix}
@@ -205,7 +238,7 @@ $\Delta_1 = c^\text{Б} P^{-1} A_1 - c_1 =
 \end{pmatrix}
 \begin{pmatrix}
 	1 \\
-	-3
+	3
 \end{pmatrix} - 2 = -2$
 
 $\Delta_2 = c^\text{Б} P^{-1} A_2 - c_2 =
@@ -218,16 +251,25 @@ $\Delta_2 = c^\text{Б} P^{-1} A_2 - c_2 =
 \end{pmatrix}
 \begin{pmatrix}
 	1 \\
-	-1
+	1
 \end{pmatrix} - 3 = -3$
 
-$\Delta = 
+$\Delta_4 = c^\text{Б} P^{-1} A_4 - c_4 =
 \begin{pmatrix}
-	-2 \\
-	-3
-\end{pmatrix} \ngtr 0 \Rightarrow$ базис не оптимален. 
+	0 & 0
+\end{pmatrix}
+\begin{pmatrix}
+	1 & 0 \\
+	0 & 1 
+\end{pmatrix}
+\begin{pmatrix}
+	0 \\
+	-1
+\end{pmatrix} - 0 = 0$
 
-Вводим в базис переменную $k = \argmin\limits_i\Delta_i = 2 \Rightarrow x_2$.
+$\Delta = \begin{pmatrix} -2 & -3 & 0 \end{pmatrix}^T \ngeqslant 0 \Rightarrow$ базис не оптимален. 
+
+Вводим в базис переменную $x_k$, т.ч. $k = \argmin\limits_i\Delta_i = 2 \Rightarrow x_2$.
 
 Определим вектор $z = P^{-1} A_k = P^{-1} A_2 = 
 \begin{pmatrix}
@@ -236,38 +278,135 @@ $\Delta =
 \end{pmatrix}
 \begin{pmatrix}
 	1 \\
-	-1
+	1
 \end{pmatrix} =
 \begin{pmatrix}
 	1 \\
-	-1
+	1
+\end{pmatrix}$.
+
+Выводим из базиса переменную $x_r$, т.ч. 
+$r = \argmin\limits_j\left( \left. \dfrac{x_j^\text{Б}}{z_j}\right|_{z_j>0} \right) = 5 \Rightarrow x_5$.
+
+\item 
+Меняем местами $x_2$ и $x_5$, следовательно новый базис состоит из $x_2$ и $x_3$, а $x_1$, $x_4$ и $x_5$ -- свободные переменные. 
+
+$P = 
+\begin{pmatrix}
+	1 & 1 \\
+	1 & 0 
+\end{pmatrix} \Rightarrow
+P^{-1} = 
+\begin{pmatrix}
+	0 & 1 \\
+	1 & -1 
 \end{pmatrix}$
 
-Выводим из базиса переменную 
+$x^\text{Б} = P^{-1}b =
+\begin{pmatrix}
+	0 & 1 \\
+	1 & -1
+\end{pmatrix}
+\begin{pmatrix}
+	4.8 \\
+	3.5
+\end{pmatrix} =
+\begin{pmatrix}
+	3.5 \\
+	1.3
+\end{pmatrix} \geq 0
+\Rightarrow$ базис допустим.
+
+$c^\text{Б} = 
+\begin{pmatrix}
+	3 & 0
+\end{pmatrix}$
+
+Для свободных переменных найдем $\Delta_i$ ($i = 1, 4, 5$):
+
+$\Delta_1 = c^\text{Б} P^{-1} A_1 - c_1 =
+\begin{pmatrix}
+	3 & 0
+\end{pmatrix}
+\begin{pmatrix}
+	0 & 1 \\
+	1 & -1
+\end{pmatrix}
+\begin{pmatrix}
+	1 \\
+	3
+\end{pmatrix} - 2 = 
+9 - 2 = 7$
+
+$\Delta_4 = c^\text{Б} P^{-1} A_4 - c_4 =
+\begin{pmatrix}
+	3 & 0
+\end{pmatrix}
+\begin{pmatrix}
+	0 & 1 \\
+	1 & -1
+\end{pmatrix}
+\begin{pmatrix}
+	0 \\
+	-1
+\end{pmatrix} - 0 = -3 - 0 = -3$
+
+$\Delta_5 = c^\text{Б} P^{-1} A_5 - c_5 =
+\begin{pmatrix}
+	3 & 0
+\end{pmatrix}
+\begin{pmatrix}
+	0 & 1 \\
+	1 & -1 
+\end{pmatrix}
+\begin{pmatrix}
+	0 \\
+	1
+\end{pmatrix} - 0 = 3 - 0 = 3$
+
+$\Delta = \begin{pmatrix} 7 & -3 & 3 \end{pmatrix}^T \ngeqslant 0 \Rightarrow$ базис не оптимален. 
+
+Вводим в базис переменную $x_k$, т.ч. $k = \argmin\limits_i\Delta_i = 4 \Rightarrow x_4$.
+
+Определим вектор $z = P^{-1} A_k = P^{-1} A_4 = 
+\begin{pmatrix}
+	0 & 1 \\
+	1 & -1
+\end{pmatrix}
+\begin{pmatrix}
+	0 \\
+	-1
+\end{pmatrix} =
+\begin{pmatrix}
+	-1 \\
+	1
+\end{pmatrix}$.
+
+Выводим из базиса переменную $x_r$, т.ч. 
 $r = \argmin\limits_j\left( \left. \dfrac{x_j^\text{Б}}{z_j}\right|_{z_j>0} \right) = 3 \Rightarrow x_3$.
 
 \item 
-Меняем местами $x_2$ и $x_3$, следовательно новый базис состоит из $x_2$ и $x_4$, а $x_1$ и $x_3$ -- свободные переменные. 
+Меняем местами $x_3$ и $x_4$, следовательно новый базис состоит из $x_2$ и $x_4$, а $x_1$, $x_3$ и $x_5$ -- свободные переменные.
 
 $P = 
 \begin{pmatrix}
 	1 & 0 \\
-	-1 & 1 
+	1 & -1
 \end{pmatrix} \Rightarrow
 P^{-1} = 
 \begin{pmatrix}
 	1 & 0 \\
-	1 & 1 
+	1 & -1
 \end{pmatrix}$
 
 $x^\text{Б} = P^{-1}b =
 \begin{pmatrix}
 	1 & 0 \\
-	1 & 1 
+	1 & -1
 \end{pmatrix}
 \begin{pmatrix}
 	4.8 \\
-	-3.5
+	3.5
 \end{pmatrix} =
 \begin{pmatrix}
 	4.8 \\
@@ -280,7 +419,7 @@ $c^\text{Б} =
 	3 & 0
 \end{pmatrix}$
 
-Для свободных переменных найдем $\Delta_i$ ($i = 1, 3$):
+Для свободных переменных найдем $\Delta_i$ ($i = 1, 3, 5$):
 
 $\Delta_1 = c^\text{Б} P^{-1} A_1 - c_1 =
 \begin{pmatrix}
@@ -288,13 +427,12 @@ $\Delta_1 = c^\text{Б} P^{-1} A_1 - c_1 =
 \end{pmatrix}
 \begin{pmatrix}
 	1 & 0 \\
-	1 & 1 
+	1 & -1
 \end{pmatrix}
 \begin{pmatrix}
 	1 \\
-	-3
-\end{pmatrix} - 2 = 
-3 - 2 = 1$
+	3
+\end{pmatrix} - 2 = 3 - 2 = 1$
 
 $\Delta_3 = c^\text{Б} P^{-1} A_3 - c_3 =
 \begin{pmatrix}
@@ -302,20 +440,29 @@ $\Delta_3 = c^\text{Б} P^{-1} A_3 - c_3 =
 \end{pmatrix}
 \begin{pmatrix}
 	1 & 0 \\
-	1 & 1 
+	1 & -1
 \end{pmatrix}
 \begin{pmatrix}
 	1 \\
 	0
-\end{pmatrix} - 0 = 3$
+\end{pmatrix} - 0 = 3 - 0 = 3$
 
-$\Delta = 
+$\Delta_5 = c^\text{Б} P^{-1} A_5 - c_5 =
 \begin{pmatrix}
-	1 \\
-	3
-\end{pmatrix} > 0 \Rightarrow$ базис оптимален. 
+	3 & 0
+\end{pmatrix}
+\begin{pmatrix}
+	1 & 0 \\
+	1 & -1
+\end{pmatrix}
+\begin{pmatrix}
+	0 \\
+	1
+\end{pmatrix} - 0 = 0 - 0 = 0$
 
-Следовательно точка $x = \begin{pmatrix} 0 & 4.8 & 0 & 1.3 \end{pmatrix}$ является единственным решением, что соотносится с геометрическим решением $x_1 = 0$, $x_2 = 4.8$.
+$\Delta = \begin{pmatrix} 1 & 3 & 0 \end{pmatrix}^T \geq 0 \Rightarrow$ базис оптимален. 
+
+Следовательно точка $x^{opt} = \begin{pmatrix} 0 & 4.8 & 0 & 1.3 & 0 \end{pmatrix}$ является оптимальным решением, что соотносится с геометрическим решением $x_1 = 0$, $x_2 = 4.8$. Значение функции при этом равно $x^{opt} \cdot c = 14.4$.
 
 \end{enumerate}
 
@@ -323,12 +470,19 @@ $\Delta =
 
 \section{Решение симплекс-методом в табличной форме}
 
-Переменные $x_3$ и $x_4$ составляют в матрице $A$ единичную подматрицу, следовательно выберем их как базисные переменные, значит $x_1$ и $x_2$ -- свободные переменные. Выразим через них базисные переменные:
+Переменные $x_3$ и $x_5$ составляют в матрице $A$ единичную подматрицу, следовательно выберем их как базисные переменные, значит $x_1$, $x_2$ и $x_4$ -- свободные переменные. Выразим через них базисные переменные:
 \begin{equation*}
-x_3 = 4.8 - x_1 - x_2
-\end{equation*}
-\begin{equation*}
-x_4 = -3.5 + 3x_1 + x_2
+\begin{cases}
+	\max \left( 2 x_1 + 3 x_2 \right) \\
+	x_1 + x_2 + x_3 = 4.8 \\
+	3 x_1 + x_2 - x_4 + x_5 = 3.5 \\
+	x_i \ge 0, i = \overline{1,5}
+\end{cases}
+\Rightarrow
+\begin{cases}
+	x_3 = 4.8 - x_1 - x_2 \\
+	x_5 = 3.5 - 3x_1 - x_2 + x_4
+\end{cases}
 \end{equation*}
 
 В таблице \ref{tab:simplex_1} приведена таблица симплекс метода для первого базиса.
@@ -337,78 +491,123 @@ x_4 = -3.5 + 3x_1 + x_2
 \begin{center}
 	\def\tabcolsep{15pt}
 	\def\arraystretch{1.3}
-	\caption{Таблица недопустимого базиса}
+	\caption{Базис $x_3, x_5$}
 	\label{tab:simplex_1}
-	\begin{tabular}{|c||c|c||c|}
+	\begin{tabular}{|c||c|c|c||c|}
 		\hline
-		 & $x_1$ & $x_2$ & $b$ \\ 
-		\hhline{|=#==#=|}
-		$x_3$ & $-1$ & \textcolor{red}{\boldmath$-1$} & $4.8$ \\ 
+		№1.1 & $x_1$ & $x_2$ & $x_4$ & $b$ \\ 
+		\hhline{|=#===#=|}
+		$x_3$ & $-1$ & $-1$ & $0$ & $4.8$ \\ 
 		\hline
-		$x_4$ & $3$ & $1$ & $-3.5$ \\ 
-		\hhline{|=#==#=|}
-		$f$ & $2$ & $3$ & $0$ \\ 
+		$x_5$ & $-3$ & \textcolor{red}{\boldmath$-1$} & $1$ & $3.5$\\ 
+		\hhline{|=#===#=|}
+		$f$ & $2$ & $3$ & $0$& $0$ \\ 
 		\hline
 	\end{tabular}
 \end{center}
 \end{table}
 
-Так как $b \ngeq 0$, то базис является недопустимым. Выберем $x_2$ как разрешающий столбец, а $x_3$ как разрешающую строку. На их пересечении находится разрешающий элемент, равный $-1$. В таблице \ref{tab:simplex_3} приведена таблица симплекс метода, в которой поменяны местами $x_2$ и $x_3$ и базисными являются переменные $x_2$ и $x_4$.
+Базис является допустимым, так как $b \geq 0$, но не является оптимальным, так как $c \nleqslant 0$. Выберем $x_2$ как разрешающий столбец, а $x_5$ как разрешающую строку. На их пересечении находится разрешающий элемент $-1$. В таблице \ref{tab:simplex_2} приведена промежуточная таблица симплекс метода, в которой поменяны местами $x_2$ и $x_5$ и базисными являются $x_2$ и $x_3$.
 
-%\begin{table}[H]
-%\begin{center}
-%	\def\tabcolsep{15pt}
-%	\def\arraystretch{1.3}
-%	\caption{Промежуточная таблица}
-%	\label{tab:simplex_2}
-%	\begin{tabular}{|c||c|c||c|}
-%		\hline
-%		 & $x_1$ & $x_3$ & $b$ \\ 
-%		\hhline{|=#==#=|}
-%		$x_2$ & $1$ & \textcolor{red}{\boldmath$-1$} & $-4.8$ \\ 
-%		\hline
-%		$x_4$ & $-2$ & $1$ & $-1.3$ \\ 
-%		\hhline{|=#==#=|}
-%		$f$ & $1$ & $3$ & $-14.4$ \\ 
-%		\hline
-%	\end{tabular}
-%\end{center}
-%\end{table}
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{14pt}
+	\def\arraystretch{1.3}
+	\caption{Промежуточная таблица базиса $x_2, x_3$}
+	\label{tab:simplex_2}
+	\begin{tabular}{|c||c|c|c||c|}
+		\hline
+		№2.1 & $x_1$ & $x_5$ & $x_4$ & $b$ \\ 
+		\hhline{|=#===#=|}
+		$x_3$ & $-2$ & $-1$ & $1$ & $-1.3$ \\ 
+		\hline
+		$x_2$ & $3$ & \textcolor{red}{\boldmath$1$} & $-1$ & $-3.5$\\ 
+		\hhline{|=#===#=|}
+		$f$ & $7$ & $3$ & $-3$& $-10.5$ \\ 
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Разделив каждый элемент таблицы на разрешающий элемент ($-1$), получили симплекс таблицу \ref{tab:simplex_3} для второго базиса.
 
 \begin{table}[H]
 \begin{center}
 	\def\tabcolsep{15pt}
 	\def\arraystretch{1.3}
-	\caption{Таблица допустимого оптимального базиса}
+	\caption{Базис $x_2, x_3$}
 	\label{tab:simplex_3}
-	\begin{tabular}{|c||c|c||c|}
+	\begin{tabular}{|c||c|c|c||c|}
 		\hline
-		 & $x_1$ & $x_3$ & $b$ \\ 
-		\hhline{|=#==#=|}
-		$x_2$ & $-1$ & \textcolor{red}{\boldmath$1$} & $4.8$ \\ 
+		№2.2 & $x_1$ & $x_5$ & $x_4$ & $b$ \\ 
+		\hhline{|=#===#=|}
+		$x_3$ & $2$ & $1$ & \textcolor{red}{\boldmath$-1$} & $1.3$ \\ 
 		\hline
-		$x_4$ & $2$ & $-1$ & $1.3$ \\ 
-		\hhline{|=#==#=|}
-		$f$ & $-1$ & $-3$ & $14.4$ \\ 
+		$x_2$ & $-3$ & $-1$ & $1$ & $3.5$\\ 
+		\hhline{|=#===#=|}
+		$f$ & $-7$ & $-3$ & $3$& $10.5$ \\ 
 		\hline
 	\end{tabular}
 \end{center}
 \end{table}
 
-Базис является допустимым, так как $b \ge 0$. Более того базис является оптимальным, так как $c \le 0$. Следовательно точка $x = \begin{pmatrix} 0 & 4.8 & 0 & 1.3 \end{pmatrix}$ является единственным решением, что соотносится с геометрическим решением $x_1 = 0$, $x_2 = 4.8$.
+Базис является допустимым, так как $b \ge 0$, но не является оптимальным, так как $c \nleqslant 0$. Выберем $x_4$ как разрешающий столбец, а $x_3$ как разрешающую строку. На их пересечении находится разрешающий элемент $-1$. В таблице \ref{tab:simplex_4} приведена промежуточная таблица симплекс метода, в которой поменяны местами $x_3$ и $x_4$ и базисными являются $x_2$ и $x_4$.
+
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{15pt}
+	\def\arraystretch{1.3}
+	\caption{Промежуточная таблица базиса $x_2, x_4$}
+	\label{tab:simplex_4}
+	\begin{tabular}{|c||c|c|c||c|}
+		\hline
+		№3.1 & $x_1$ & $x_5$ & $x_3$ & $b$ \\ 
+		\hhline{|=#===#=|}
+		$x_4$ & $-2$ & $-1$ & \textcolor{red}{\boldmath$1$} & $-1.3$ \\ 
+		\hline
+		$x_2$ & $1$ & $0$ & $1$ & $-4.8$\\ 
+		\hhline{|=#===#=|}
+		$f$ & $1$ & $0$ & $3$& $-14.4$ \\ 
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Разделив каждый элемент таблицы на разрешающий элемент ($-1$), получили симплекс таблицу \ref{tab:simplex_5} для третьего базиса.
+
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{16pt}
+	\def\arraystretch{1.3}
+	\caption{Базис $x_2, x_4$}
+	\label{tab:simplex_5}
+	\begin{tabular}{|c||c|c|c||c|}
+		\hline
+		№3.2 & $x_1$ & $x_5$ & $x_3$ & $b$ \\ 
+		\hhline{|=#===#=|}
+		$x_4$ & $2$ & $1$ & $-1$ & $1.3$ \\ 
+		\hline
+		$x_2$ & $-1$ & $0$ & $-1$ & $4.8$\\ 
+		\hhline{|=#===#=|}
+		$f$ & $-1$ & $0$ & $-3$& $14.4$ \\ 
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Базис является допустимым, так как $b \ge 0$. Более того, базис является оптимальным, так как $c \le 0$. Следовательно точка $x^{opt} = \begin{pmatrix} 0 & 4.8 & 0 & 1.3 & 0 \end{pmatrix}$ является оптимальным решением, что соотносится с геометрическим решением $x_1 = 0$, $x_2 = 4.8$. Значение функции в этой точке $f = 14.4$.
 
 \section{Введение дополнительного ограничения}
 
 Введем дополнительное ограничение, отрезающее оптимальное решение: $x_2 \le 4$. Тогда каноническая форма приобретает следующий вид:
-
 \begin{equation}
 \label{eq:additional}
 \begin{cases}
 	\max \left( 2 x_1 + 3 x_2 \right) \\
 	x_1 + x_2 + x_3 = 4.8 \\
-	-3 x_1 - x_2 + x_4 = -3.5 \\
-	x_2 + x_5 = 4 \\
-	x_i \ge 0, i = \overline{1,5}
+	3 x_1 + x_2 - x_4 + x_5 = 3.5 \\
+	x_2 + x_6 = 4 \\
+	x_i \ge 0, i = \overline{1,6}
 \end{cases}
 \end{equation}
 
@@ -423,60 +622,60 @@ x_4 = -3.5 + 3x_1 + x_2
 \end{figure}
 
 Решим задачу двойственным симплекс методом. Добавим в таблице оптимального базиса 
-\ref{tab:simplex_3} переменную $x_5$ к базисным переменным. Для этого выразим $x_5$ через свободные переменные:
+\ref{tab:simplex_5} переменную $x_6$ к базисным переменным. Для этого выразим $x_6$ через свободные переменные $x_1$, $x_3$ и $x_5$:
 \begin{equation*}
-x_5 = 4 - x_2 = 4 - 4.8 + x_1 + x_3 = x_1 + x_3 - 0.8
+x_6 = 4 - x_2 = 4 - 4.8 + x_1 + x_3 = x_1 + x_3 - 0.8
 \end{equation*}
 
-Получившаяся симплекс таблица приведена в таблице \ref{tab:simplex_4}.
+Получившаяся симплекс таблица приведена в таблице \ref{tab:add_simplex_1}.
 
 \begin{table}[H]
 \begin{center}
-	\def\tabcolsep{15pt}
+	\def\tabcolsep{16pt}
 	\def\arraystretch{1.3}
-	\caption{Таблица недопустимого базиса}
-	\label{tab:simplex_4}
-	\begin{tabular}{|c||c|c||c|}
+	\caption{Базис $x_2, x_4, x_6$}
+	\label{tab:add_simplex_1}
+	\begin{tabular}{|c||c|c|c||c|}
 		\hline
-		 & $x_1$ & $x_3$ & $b$ \\ 
-		\hhline{|=#==#=|}
-		$x_2$ & $-1$ & $1$ & $4.8$ \\ 
+		№1 & $x_1$ & $x_5$ & $x_3$ & $b$ \\ 
+		\hhline{|=#===#=|}
+		$x_4$ & $2$ & $1$ & $-1$ & $1.3$ \\ 
 		\hline
-		$x_4$ & $2$ & $-1$ & $1.3$ \\ 
+		$x_2$ & $-1$ & $0$ & $-1$ & $4.8$\\  
 		\hline
-		$x_5$ & \textcolor{red}{\boldmath$1$} & $1$ & $-0.8$ \\ 
-		\hhline{|=#==#=|}
-		$f$ & $-1$ & $-3$ & $14.4$ \\ 
+		$x_6$ & \textcolor{red}{\boldmath$1$} & $0$ & $1$ & $-0.8$\\ 
+		\hhline{|=#===#=|}
+		$f$ & $-1$ & $0$ & $-3$& $14.4$ \\ 
 		\hline
 	\end{tabular}
 \end{center}
 \end{table}
 
-Так как $b \ngeq 0$, то базис является недопустимым. Выберем $x_1$ как разрешающий столбец, а $x_5$ как разрешающую строку. На их пересечении находится разрешающий элемент, равный $1$. В таблице \ref{tab:simplex_5} приведена таблица симплекс метода, в которой поменяны местами $x_1$ и $x_5$.
+Так как $b \ngeqslant 0$, то базис является недопустимым. Выберем $x_1$ как разрешающий столбец, а $x_6$ как разрешающую строку. На их пересечении находится разрешающий элемент $1$. В таблице \ref{tab:add_simplex_2} приведена таблица симплекс метода, в которой поменяны местами $x_1$ и $x_6$.
 
 \begin{table}[H]
 \begin{center}
-	\def\tabcolsep{15pt}
+	\def\tabcolsep{16pt}
 	\def\arraystretch{1.3}
-	\caption{Таблица допустимого и оптимального базиса}
-	\label{tab:simplex_5}
-	\begin{tabular}{|c||c|c||c|}
+	\caption{Базис $x_1, x_2, x_4$}
+	\label{tab:add_simplex_2}
+	\begin{tabular}{|c||c|c|c||c|}
 		\hline
-		 & $x_5$ & $x_3$ & $b$ \\ 
-		\hhline{|=#==#=|}
-		$x_2$ & $-1$ & $2$ & $4$ \\ 
+		№2 & $x_6$ & $x_5$ & $x_3$ & $b$ \\ 
+		\hhline{|=#===#=|}
+		$x_4$ & $2$ & $1$ & $-3$ & $2.9$ \\ 
 		\hline
-		$x_4$ & $2$ & $3$ & $2.9$ \\ 
+		$x_2$ & $-1$ & $0$ & $0$ & $4$\\  
 		\hline
-		$x_1$ & \textcolor{red}{\boldmath$1$} & $-1$ & $0.8$ \\ 
-		\hhline{|=#==#=|}
-		$f$ & $-1$ & $-2$ & $13.6$ \\ 
+		$x_1$ & \textcolor{red}{\boldmath$1$} & $0$ & $-1$ & $0.8$\\ 
+		\hhline{|=#===#=|}
+		$f$ & $-1$ & $0$ & $-2$ & $13.6$ \\ 
 		\hline
 	\end{tabular}
 \end{center}
 \end{table}
 
-Базис является допустимым, так как $b \ge 0$. Более того, базис является оптимальным, так как $c \le 0$. Следовательно точка $x = \begin{pmatrix} 0.8 & 4 & 0 & 2.9 & 0 \end{pmatrix}$ является единственным решением, что соотносится с геометрическим решением $x_1 = 0.8$, $x_2 = 4$.
+Базис является допустимым, так как $b \ge 0$. Более того, базис является оптимальным, так как $c \leq 0$. Следовательно точка $x^{opt} = \begin{pmatrix} 0.8 & 4 & 0 & 0 & 2.9 & 0 \end{pmatrix}$ является оптимальным решением, что соотносится с геометрическим решением $x_1 = 0.8$, $x_2 = 4$. Значение функции в этой точке $f = 13.6$.
 
 \section{Двойственная задача}
 
