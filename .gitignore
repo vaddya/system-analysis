@@ -6,3 +6,5 @@
 *.gz
 *.dvi
 .ipynb_checkpoints/
+*.lof
+*.lot
