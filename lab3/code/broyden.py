@@ -14,14 +14,16 @@ def broyden(y, f, symbols, x_init, max_step):
     while step < max_step:
         x_curr = {symbols[j]: X[-1][j] for j in range(M)}
 
-        grad = np.array([derivs[i].subs(x_curr) for i in range(M)], dtype=np.float32)
+        grad = np.array([derivs[i].subs(x_curr) for i in range(M)])
+        grad = grad.astype(np.float32)
 
         if step == 0:
-            nu = -np.eye(M)
-            N.append(nu)
+            n = -np.eye(M)
+            N.append(n)
         else:
             x_prev = {symbols[j]: X[-2][j] for j in range(M)}
-            grad_prev = np.array([derivs[i].subs(x_prev) for i in range(M)], dtype=np.float32)
+            grad_prev = np.array([derivs[i].subs(x_prev) for i in range(M)])
+            grad_prev = grad_prev.astype(np.float32)
 
             delta_g = grad - grad_prev
             delta_X = X[-1] - X[-2]
@@ -30,13 +32,11 @@ def broyden(y, f, symbols, x_init, max_step):
 
             zm = z[np.newaxis]  # 1x2
             delta_nu = zm.T.dot(zm) / zm.dot(delta_g[np.newaxis].T)
-            nu = N[-1] + delta_nu
-            N.append(nu)
+            n = N[-1] + delta_nu
+            N.append(n)
 
-        K = -nu.dot(grad[np.newaxis].T).flatten()
-
+        K = -n.dot(grad[np.newaxis].T).flatten()
         t = -grad.dot(grad[np.newaxis].T) / grad.dot(H).dot(grad[np.newaxis].T)
-
         x_temp = np.array(X[-1] + t * K, dtype=np.float32)
 
         if np.allclose(X[-1], x_temp) or np.allclose(f(X[-1]), f(x_temp)):
@@ -44,4 +44,5 @@ def broyden(y, f, symbols, x_init, max_step):
 
         X.append(x_temp)
         step += 1
+
     return X
