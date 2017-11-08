@@ -8,3 +8,4 @@
 .ipynb_checkpoints/
 *.lof
 *.lot
+__pycache__/
