@@ -5,9 +5,7 @@
 \include{titlepage}
 
 \tableofcontents
-%\newpage
 \listoffigures
-%\listoftables
 \newpage
 
 \section{Техническое задание}
@@ -139,20 +137,6 @@ K_k^{(i,j)} =
 \end{cases}
 \end{equation*}
 
-%\begin{equation*}
-%x_j^{(i+1,j)} = x_j^{(i,j)} - \dfrac{\partial f}{\partial x_j}\left( X^{(i,j)} \right) \cdot \left[ \dfrac{\partial^2 f}{\partial x_j^2} \left(X^{(i,j)} \right) \right]^{-1}
-%\end{equation*}
-
-%$X^{(i)} = [x^{(i,1)}, x^{(i,2)}]$
-%
-%$X^{i} \rightarrow X^{(i,1)} \rightarrow X^{(i,2)} = X^{i+1}$
-%
-%$\Delta x_j^{i+1} = x_j^{(i+1,j)} - x_j^{(i,j)}$
-%
-%$\Delta f\left(\Delta x_j\right) = f\left( X^{(i+1,j)}\right) - f\left( X^{(i+1,j-1)}\right)$
-%
-%$\Delta x_j = \argmax \limits_{(\Delta x_j)} \left\lbrace \Delta f\left(\Delta x_j\right) \right\rbrace$
-
 \newpage
 
 \subsection{Исходный код}
@@ -270,25 +254,6 @@ t^{(i)} = -\dfrac{\nabla^T f\left(X^{(i)}\right) K^{(i)}}{K^{(i)^T} H\left(X^{(i
 \begin{equation*}
 K^{(i)} = \nabla f(X)
 \end{equation*}
-
-%Линейная аппроксимация целевой функции в точке $X^{(i)}$:
-%
-%\begin{align*}
-%f\left(X^{(i+1)}\right) &\approx f\left(X^{(i)}\right) + \left\langle f'(X^{(i)}), X^{(i+1)} - X^{(i)} \right\rangle \\ 
-%&= f\left(X^{(i)}\right) + f'\left(X^{(i)}\right)^T \left(X^{(i+1)} - X^{(i)}\right)
-%\end{align*}
-%
-%$X^{(i+1)} = X^{(i)} + t^{(i)} K^{(i)}$
-%
-%$\Delta f = f\left(X^{(i+1)}\right) - f\left(X^{(i)}\right) = 
-%t^{(i)} \left\langle f'(X^{(i)}), X^{(i+1)} - X^{(i)} \right\rangle$
-%
-%$t^{(i)} = \argmax \limits_{(K^{(i)})} \left\lbrace \sum\limits_{k=1}^n \dfrac{\partial f}{\partial x_k} \left( X^{(i)} \right) K_k^{(i)} \right\rbrace$ при условии $\sum\limits_{k=1}^n \left[ K_k^{(i)} \right]^2 = 1$.
-%
-%\begin{equation*}
-%K_k^{(i)} = \frac{\dfrac{\partial f}{\partial x_k} \left(X^{(i)}\right)}{\sqrt{\sum\limits_{k=1}^n \left[ \dfrac{\partial f}{\partial x_k} \left(X^{(i)}\right) \right]^2}} \Longleftrightarrow
-%K_k^{(i)} = \frac{f'\left(X^{(i)}\right)}{\norm{f'\left(X^{(i)}\right)}}
-%\end{equation*}
 
 \subsection{Исходный код}
 

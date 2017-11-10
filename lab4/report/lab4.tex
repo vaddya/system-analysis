@@ -1,0 +1,152 @@
+\include{settings}
+
+\begin{document}
+
+\include{titlepage}
+
+\tableofcontents
+%\newpage
+\listoffigures
+%\listoftables
+\newpage
+
+\section{Техническое задание}
+
+\begin{enumerate}
+	\setlength{\itemsep}{0em}
+	\item Решить задачу методом Лагранжа при заданном ограничении;
+	\item Решить задачу методом Била при заданных ограничениях;
+	\item Решить задачу методом проекции градиента при заданных ограничениях;
+	\item Решить задачу методом штрафных функций или методом барьерных функций при
+заданном ограничении;
+	\item Решить задачу методом возможных направлений при заданном ограничении.
+\end{enumerate}
+
+\section{Исходные данные}
+
+\paragraph{Вариант 32}
+
+Дана задача нелинейного программирования:
+\begin{equation*}
+	\max f(X) = \max \left( -31 x_1^2 - 34 x_2^2 + 4 x_1 x_2 + 286 x_1 + 388 x_2 \right)
+\end{equation*}
+Заданы коэффициенты $a_{ij}$:
+\begin{center}
+\begin{multicols}{5}
+	$a_{11} = 7$\\
+	$a_{21} = 10$\\
+	$a_{31} = -1$\\
+	$a_{41} = 0$\\
+	$a_{51} = 0$\\
+\end{multicols}
+\begin{multicols}{5}
+	$a_{12} = 12$\\
+	$a_{22} = 8$\\
+	$a_{32} = 0$\\
+	$a_{42} = -1$\\
+	$a_{52} = 1$\\
+\end{multicols}
+\end{center}
+Заданы коэффициенты $b_i$:
+\begin{multicols}{6}
+	\centering
+	$b_1 = 84$\\
+	$b_2 = 80$\\
+	$b_3 = 0$\\
+	$b_4 = 0$\\
+	$b_5 = 5$\\
+	$b_6 = 400$\\
+\end{multicols}
+\noindent Заданы коэффициенты $d_i$:
+\begin{multicols}{2}
+	\centering
+	$d_1 = 16$\\
+	$d_2 = 25$\\
+\end{multicols}
+
+\section{Решение методом Лагранжа}
+
+Решим задачу при ограничении:
+\begin{equation*}
+a_{51} x_1 + a_{52} x_2 = b_5 
+\Longleftrightarrow
+x_2 = 5
+\end{equation*}
+
+\section{Необходимые условия оптимальности при линейных ограничениях}
+
+Запишем необходимые условия оптимальности для задачи при ограничениях:
+\begin{equation*}
+\begin{cases}
+a_{11} x_1 + a_{12} x_2 \leq b_1 \\
+a_{21} x_1 + a_{22} x_2 \leq b_2 \\
+a_{31} x_1 + a_{32} x_2 \leq b_3 \\
+a_{41} x_1 + a_{42} x_2 \leq b_4 \\
+\end{cases}
+\Longleftrightarrow
+\begin{pmatrix}
+	7 & 12 \\
+	10 & 8 \\
+	-1 & 0 \\
+	0 & -1
+\end{pmatrix}
+\begin{pmatrix}
+	x_1 \\
+	x_2
+\end{pmatrix} =
+\begin{pmatrix}
+	84 \\
+	80 \\
+	0 \\
+	0
+\end{pmatrix}
+\end{equation*}
+
+\section{Решение методом Била}
+
+Решим задачу при ограничениях:
+\begin{equation*}
+\begin{cases}
+a_{11} x_1 + a_{12} x_2 \leq b_1 \\
+a_{21} x_1 + a_{22} x_2 \leq b_2 \\
+a_{31} x_1 + a_{32} x_2 \leq b_3 \\
+a_{41} x_1 + a_{42} x_2 \leq b_4 \\
+\end{cases}
+\end{equation*}
+
+\section{Решение методом проекции градиента}
+
+Решим задачу при ограничениях:
+\begin{equation*}
+\begin{cases}
+a_{11} x_1 + a_{12} x_2 \leq b_1 \\
+a_{21} x_1 + a_{22} x_2 \leq b_2 \\
+a_{31} x_1 + a_{32} x_2 \leq b_3 \\
+a_{41} x_1 + a_{42} x_2 \leq b_4 \\
+\end{cases}
+\end{equation*}
+
+\section{Необходимые условия оптимальности при квадратичных ограничениях}
+
+Решим задачу при ограничении:
+\begin{equation*}
+d_1 x_1^2 + d_2 x_2^2 \leq b_6
+\Longleftrightarrow
+16 x_1^2 + 25 x_2^2 \leq 400
+\end{equation*}
+
+\section{Решение методом барьерных/штрафных функций}
+
+Решим задачу при ограничении:
+\begin{equation*}
+d_1 x_1^2 + d_2 x_2^2 \leq b_6
+\end{equation*}
+
+\section{Решение методом возможных направлений}
+
+Решим задачу при ограничении:
+\begin{equation*}
+d_1 x_1^2 + d_2 x_2^2 \leq b_6
+\end{equation*}
+
+\end{document}
