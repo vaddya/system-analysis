@@ -7,7 +7,9 @@
 [Отчет](https://github.com/vaddya/system-analysis/blob/master/lab1/report/lab1.pdf)
 2. __Линейное программирование:__
 [Задание](https://github.com/vaddya/system-analysis/blob/master/lab2/lab2.pdf) · 
+[Jupyter](http://nbviewer.jupyter.org/github/vaddya/system-analysis/blob/master/lab2/code/lab2.ipynb) · 
 [Отчет](https://github.com/vaddya/system-analysis/blob/master/lab2/report/lab2.pdf)
 3. __Нелинейное программирование. Безусловная оптимизация:__
 [Задание](https://github.com/vaddya/system-analysis/blob/master/lab3/lab3.pdf) · 
+[Jupyter](http://nbviewer.jupyter.org/github/vaddya/system-analysis/blob/master/lab3/code/lab3.ipynb) · 
 [Отчет](https://github.com/vaddya/system-analysis/blob/master/lab3/report/lab3.pdf)
