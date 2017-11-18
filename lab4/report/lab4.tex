@@ -71,7 +71,64 @@
 a_{51} x_1 + a_{52} x_2 = b_5 
 \Longleftrightarrow
 x_2 = 5
+\Longleftrightarrow
+x_2 - 5 = 0
 \end{equation*}
+
+В методе Лагранжа исходная задача условной оптимизации сводится к задаче безусловной оптимизации -- задаче поиска стационарной точки функции Лагранжа, являющийся точкой локального максимума функции $L(X, V)$ по аргументу $X$. Запишем функцию Лагранжа:
+\begin{equation*}
+L(X, V) = -31 x_1^2 - 34 x_2^2 + 4 x_1 x_2 + 286 x_1 + 388 x_2 + V_1 \left(x_2 - 5\right)
+\end{equation*}
+
+Сформулируем условие стационарности:
+\begin{equation*}
+\begin{cases}
+\dfrac{\partial L}{\partial x_1} = -62 x_1 + 4 x_2 + 286 = 0 \\
+\dfrac{\partial L}{\partial x_2} = -68 x_2 + 4 x_1 + 388 + V_1 = 0 \\
+\dfrac{\partial L}{\partial V_1} = x_2 - 5 = 0
+\end{cases}
+\end{equation*}
+
+Решая систему уравнений получим:
+\begin{equation*}
+\begin{cases}
+x_2 = 5 \\
+-62 x_1 + 20 + 286 = 0 \\
+-340 + 4 x_1 + 388 + V_1 = 0
+\end{cases}
+\Rightarrow
+\begin{cases}
+x_2 = 5 \\
+x_1 \approx \dfrac{286}{62} \approx 4.94 \\
+V_1 \approx -67.76
+\end{cases}
+\end{equation*}
+
+Определим матрицу Гессе $H_L(X, V)$ и убедимся в ее отрицательной определенности:
+\begin{equation*}
+H_L(X, V) =
+\begin{pmatrix}
+	-62 & 4 \\
+	4 & -68
+\end{pmatrix} = H_L 
+\end{equation*}
+
+\newtheorem*{theorem1}{Критерий отрицательной определенности квадратичной формы}
+\begin{theorem1}
+Для отрицательной определенности квадратичной формы необходимо и достаточно, чтобы угловые миноры четного порядка ее матрицы были положительны, а нечетного порядка — отрицательны.
+\end{theorem1}
+
+Найдем главные миноры матрицы $H_L$:
+\begin{multicols}{2}
+\centering
+$\Delta_1 = \begin{vmatrix} -62 \end{vmatrix} = -62$\\
+$\Delta_2 = \begin{vmatrix}
+	-62 & 4 \\
+	4 & -68
+\end{vmatrix} = 4200$
+\end{multicols}
+
+По критерию отрицательной определенности квадратичной формы, матрица $H$ отрицательно определена. Таким образом, в соответствии с условиями второго порядка точка $(X^*, V^*)$ является точкой максимума $L(X, V)$ по $X$, а точка $X^* \approx (4.94, 5)$ -- решением задачи условной оптимизации, $f(X^*) \approx 1845$. 
 
 \section{Необходимые условия оптимальности при линейных ограничениях}
 
@@ -83,28 +140,11 @@ a_{21} x_1 + a_{22} x_2 \leq b_2 \\
 a_{31} x_1 + a_{32} x_2 \leq b_3 \\
 a_{41} x_1 + a_{42} x_2 \leq b_4 \\
 \end{cases}
-\Longleftrightarrow
-\begin{pmatrix}
-	7 & 12 \\
-	10 & 8 \\
-	-1 & 0 \\
-	0 & -1
-\end{pmatrix}
-\begin{pmatrix}
-	x_1 \\
-	x_2
-\end{pmatrix} =
-\begin{pmatrix}
-	84 \\
-	80 \\
-	0 \\
-	0
-\end{pmatrix}
 \end{equation*}
 
 \section{Решение методом Била}
 
-Решим задачу при ограничениях:
+Запишем ограничения в канонической форме:
 \begin{equation*}
 \begin{cases}
 a_{11} x_1 + a_{12} x_2 \leq b_1 \\
@@ -112,7 +152,158 @@ a_{21} x_1 + a_{22} x_2 \leq b_2 \\
 a_{31} x_1 + a_{32} x_2 \leq b_3 \\
 a_{41} x_1 + a_{42} x_2 \leq b_4 \\
 \end{cases}
+\Longleftrightarrow
+\begin{cases}
+7 x_1 + 12 x_2 \leq 84 \\
+10 x_1 + 8 x_2 \leq 80 \\
+-x_1 \leq 0 \\
+-x_2 \leq 0 \\
+\end{cases}
+\Longleftrightarrow
+\begin{cases}
+7 x_1 + 12 x_2 + x_3 = 84 \\
+10 x_1 + 8 x_2 + x_4 = 80 \\
+x_i \geq 0, i = \overline{1,4}
+\end{cases}
+%\Longleftrightarrow
+%\begin{pmatrix}
+%	7 & 12 \\
+%	10 & 8 \\
+%	-1 & 0 \\
+%	0 & -1
+%\end{pmatrix}
+%\begin{pmatrix}
+%	x_1 \\
+%	x_2
+%\end{pmatrix} \leq
+%\begin{pmatrix}
+%	84 \\
+%	80 \\
+%	0 \\
+%	0
+%\end{pmatrix}
 \end{equation*}
+
+Запишем частные производные:
+
+\begin{equation*}
+\begin{cases}
+\dfrac{\partial f}{\partial x_1} = -62 x_1 + 4 x_2 + 286 \\
+\dfrac{\partial f}{\partial x_2} = -68 x_2 + 4 x_1 + 388
+\end{cases}
+\end{equation*}
+
+Пусть $\text{Б}_0 = \begin{pmatrix} 3 & 4 \end{pmatrix}$, тогда $X^{(0)} = \begin{pmatrix} 0 & 0 & 84 & 80 \end{pmatrix}^T$. Заполним симплекс-таблицу для опорной точки $X^{(0)}$, записав в последнюю строку формулы для частных производных:
+
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{15pt}
+	\def\arraystretch{1.3}
+	\caption{Базис $x_3, x_4$}
+	\label{tab:simplex_1}
+	\begin{tabular}{|c||c|c||c|}
+		\hline
+		$X^{(0)}$ & $x_1$ & $x_2$ & $b$ \\ 
+		\hhline{|=#==#=|}
+		$x_3$ & $-7$ & $-12$ & $84$ \\ 
+		\hline
+		$x_4$ & $-10$ & $-8$ & $80$ \\ 
+		\hhline{|=#==#=|}
+		$\partial f / \partial x_j$ & $-62 x_1 + 4 x_2 + 286$ & $-68 x_2 + 4 x_1 + 388$ &  \\ 
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Базис является допустимым, так как $b \geq 0$, но не является допустимым, так как $c = \begin{pmatrix} 286 & 388 \end{pmatrix} \nleqslant 0$.
+
+Выберем как разрешающий столбец переменную $x_k	$, соответствующую максимальному значению производной целевой функции в точке $X^{(0)}$: 
+
+$k = \argmax\limits_i\left\{\dfrac{\partial f}{\partial x_i}\left(X^{(0)}\right)\right\} = 2 \Rightarrow x_2$.
+
+Оценим ситуацию в опорной точке $X^{(0)}$. Найдем соотношения между приращениями свободной переменной $x_2$ и изменениями базисных переменных $x_3$ и $x_4$ и частной производной по $x_2$:
+\begin{itemize}
+\item $\dfrac{\partial f}{\partial x_2}\left(X^{(0)}\right) = 0$ при $x_2 \approx 5.7$
+\item $x_3 = 0$ при $x_2 = 7$
+\item $x_4 = 0$ при $x_2 = 10$
+\end{itemize}
+
+Производная обращается в ноль раньше базисных переменных, поэтому введем в задачу новую свободную переменную:
+\begin{equation*}
+u_1 = \frac{\partial f}{\partial x_2} = -68 x_2 + 4 x_1 + 388
+\Longleftrightarrow
+x_2 = \frac{x_1}{17} - \frac{u_1}{68} + \frac{97}{17}
+\end{equation*}
+
+Заполним промежуточную таблицу, содержащую строку для новой переменной $u_1$. На пересечении $u_1$ и $x_2$ находится разрешающий элемент $-68$. 
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{15pt}
+	\def\arraystretch{1.3}
+	\caption{Промежуточная таблица}
+	\label{tab:simplex_1}
+	\begin{tabular}{|c||c|c||c|}
+		\hline
+		$--$ & $x_1$ & $x_2$ & $b$ \\ 
+		\hhline{|=#==#=|}
+		$u_1$ & $4$ & \textcolor{red}{\boldmath$-68$} & $388$ \\ 
+		\hline
+		$x_3$ & $-7$ & $-12$ & $84$ \\ 
+		\hline
+		$x_4$ & $-10$ & $-8$ & $80$ \\ 
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Произведем перерасчет в соответствии с правилом перерасчета симплекс-таблиц.
+
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{15pt}
+	\def\arraystretch{1.3}
+	\caption{Промежуточная таблица}
+	\label{tab:simplex_1}
+	\begin{tabular}{|c||c|c||c|}
+		\hline
+		$X^{(1)}$ & $x_1$ & $u_1$ & $b$ \\ 
+		\hhline{|=#==#=|}
+		$x_2$ & $4$ & \textcolor{red}{\boldmath$1$} & $-388$ \\ 
+		\hline
+		$x_3$ & $524$ & $-12$ & $-1056$ \\ 
+		\hline
+		$x_4$ & $712$ & $-8$ & $-2336$ \\ 
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Поделим на $-68$. Выразим целевую функцию через свободную переменную 
+\begin{align*}
+f(u_1, x_1) &= -31 x_1^2 - 34 \left(\frac{x_1}{17} - \frac{u_1}{68} + \frac{97}{17}\right)^2 + 4 x_1 \left(\frac{x_1}{17} - \frac{u_1}{68} + \frac{97}{17}\right) + \\ &+ 286 x_1 + 388 \left(\frac{x_1}{17} - \frac{u_1}{68} + \frac{97}{17}\right)
+\end{align*}
+
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{15pt}
+	\def\arraystretch{1.3}
+	\caption{Базис $x_2$, $x_3$ и $x_4$}
+	\label{tab:simplex_1}
+	\begin{tabular}{|c||c|c||c|}
+		\hline
+		$X^{(1)}$ & $x_1$ & $u_1$ & $b$ \\ 
+		\hhline{|=#==#=|}
+		$x_2$ & $-\frac{1}{17}$ & \textcolor{red}{\boldmath$-\frac{1}{68}$} & $\frac{97}{17}$ \\ 
+		\hline
+		$x_3$ & $-\frac{131}{17}$ & $\frac{3}{17}$ & $\frac{264}{17}$ \\ 
+		\hline
+		$x_4$ & $-\frac{178}{17}$ & $\frac{2}{17}$ & $\frac{584}{17}$ \\ 
+		\hhline{|=#==#=|}
+		$\partial f / \partial x_j$ & $-62 x_1 + 4 x_2 + 286$ & $-68 x_2 + 4 x_1 + 388$ &  \\ 
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
 
 \section{Решение методом проекции градиента}
 
