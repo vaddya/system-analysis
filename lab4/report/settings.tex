@@ -26,8 +26,10 @@
 \usepackage{hhline}
 \usepackage{enumitem}
 \usepackage{courier}
+\usepackage{wrapfig}
 
 \setitemize{itemsep=0em}
+\setenumerate{itemsep=0em}
 
 \theoremstyle{definition}
 
@@ -66,8 +68,8 @@
 \renewcommand{\epsilon}{\ensuremath{\varepsilon}}
 \renewcommand{\phi}{\ensuremath{\varphi}}
 \renewcommand{\thefigure}{\arabic{figure}} 	
-%\renewcommand*\not[1]{\overline{#1}}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand*\sfrac[2]{{}^{#1}\!/_{#2}}
 
 \titleformat*{\section}{\large\bfseries} 
 \titleformat*{\subsection}{\normalsize\bfseries} 
