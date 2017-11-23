@@ -1,0 +1,68 @@
+\include{settings}
+
+\begin{document}
+
+\include{titlepage}
+
+\tableofcontents
+%\newpage
+\listoffigures
+\listoftables
+\newpage
+
+\section{Техническое задание}
+
+\begin{enumerate}
+	\item Упорядочить вершины графа -- провести разбиение множества вершин графа на непересекающиеся подмножества (уровни), показать уровни на графе;
+	\item Определить наименьший путь (пути) на графе методом динамического программирования, выделить его на графе;
+	\item Определить наибольший путь (пути) на графе методом динамического программирования, выделить его на графе. 
+\end{enumerate}
+
+\section{Исходные данные}
+
+\paragraph{Вариант 32}
+
+\begin{figure}[H]
+\begin{center}
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+	                    semithick, inner sep=5pt]
+	  \tikzstyle{every state}=[fill=white,draw=black,text=black]
+	
+	  \node[initial, state] (1) 					{$1$};
+	  \node[state] 			(2) [right of=1] 		{$2$};
+	  \node[state] 			(3) [above right of=2] 	{$3$};
+	  \node[state] 			(4) [below right of=2] 	{$4$};
+	  \node[state] 			(5) [below right of=3] 	{$5$};
+	  \node[state] 			(6) [below right of=5] 	{$6$};
+	  \node[state] 			(7) [below right of=4] 	{$7$};
+	  \node[state] 			(8) [above right of=6] 	{$8$};
+	  \node[state] 			(9) [right of=8] 		{$9$};
+	
+	  \path (1)	edge 				node 		{6} (2)
+	  			edge [bend left] 	node 		{7} (3)
+	  			edge [bend right] 	node [swap] {4} (4)
+	  		(2) edge 				node 		{6} (3)
+	  			edge 				node 		{4} (4)
+	  		(3) edge 				node 		{5} (5)
+	  			edge [bend left] 	node 		{5} (8)
+	  		(4) edge 				node 		{6} (5)
+	  			edge 				node [swap] {4} (6)
+	  			edge [bend right] 	node [swap] {6} (7)
+	  		(5) edge 				node		{4} (6)
+	  			edge 				node 		{3} (8)
+	  		(6) edge 				node 		{5} (8)
+	  		(7) edge [bend right] 	node [swap] {7} (8)
+	  		(8) edge 				node 		{4} (9);
+	\end{tikzpicture}
+	\caption{Исходный граф}
+	\label{fig:graph}
+\end{center}
+\end{figure}
+
+\section{Разбиение множества вершин графа на уровни}
+
+\section{Определение наименьшего пути}
+
+\section{Определение наибольшего пути}
+
+\end{document}
