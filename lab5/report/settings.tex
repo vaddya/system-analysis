@@ -71,8 +71,9 @@
 \renewcommand{\thefigure}{\arabic{figure}} 	
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand*\sfrac[2]{{}^{#1}\!/_{#2}}
+\newcommand{\mintwo}[2]{\ensuremath{\left\{ \begin{smallmatrix} #1 \\ #2 \end{smallmatrix} \right\}}}
 
-%\titleformat*{\section}{\large\bfseries} 
+\titleformat*{\section}{\large\bfseries} 
 \titleformat*{\subsection}{\normalsize\bfseries} 
 \titleformat*{\subsubsection}{\normalsize\bfseries} 
 \titleformat*{\paragraph}{\normalsize\bfseries} 
@@ -87,7 +88,7 @@
 \setlength\parindent{5ex}
 \def\arraystretch{1.3}
 \def\tabcolsep{12pt}
-%\titlelabel{\thetitle.\quad}
+\titlelabel{\thetitle.\quad}
 
 \DeclareMathOperator*{\argmin}{argmin}
 \DeclareMathOperator*{\argmax}{argmax}

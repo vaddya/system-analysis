@@ -61,7 +61,72 @@
 
 \section{Разбиение множества вершин графа на уровни}
 
+\begin{figure}[H]
+\begin{center}
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+	                    semithick, inner sep=5pt]
+		\tikzstyle{every state}=[fill=white,draw=black,text=black]
+		\tikzstyle{every node}=[draw=none]	
+	
+		\node[initial, state] (1) 					{$1$};
+		\node[state] 			(2) [right of=1] 		{$2$};
+		\node[state] 			(3) [above right of=2] 	{$3$};
+		\node[state] 			(4) [below right of=2] 	{$4$};
+		\node[state] 			(5) [below right of=3] 	{$5$};
+		\node[state] 			(6) [below right of=5] 	{$6$};
+		\node[state] 			(7) [below right of=4] 	{$7$};
+		\node[state] 			(8) [above right of=6] 	{$8$};
+		\node[state] 			(9) [right of=8] 		{$9$};
+
+		\path 	(1)	edge 				node 		{6} (2)
+	  				edge [bend left] 	node 		{7} (3)
+	  				edge [bend right] 	node [swap] {4} (4)
+	  			(2) edge 				node 		{6} (3)
+	  				edge 				node 		{4} (4)
+	  			(3) edge 				node 		{5} (5)
+	  				edge [bend left] 	node 		{5} (8)
+	  			(4) edge 				node 		{6} (5)
+	  				edge 				node [swap] {4} (6)
+	  				edge [bend right] 	node [swap] {6} (7)
+	  			(5) edge 				node		{4} (6)
+	  				edge 				node 		{3} (8)
+	  			(6) edge 				node 		{5} (8)
+	  			(7) edge [bend right] 	node [swap] {7} (8)
+	  			(8) edge 				node 		{4} (9);
+	  		
+		\draw [-,dashed,red,thick] (1.7,-4.5) -- (1.7,3.6);
+		\draw [-,dashed,red,thick] (3.7,-4.5) -- (3.7,3.6);
+		\draw [-,dashed,red,thick] (5.7,-4.5) -- (5.7,3.6);
+		\draw [-,dashed,red,thick] (7.7,-4.5) -- (7.7,3.6);
+		\draw [-,dashed,red,thick] (9.7,-4.5) -- (9.7,3.6);
+		\draw [-,dashed,red,thick] (11.7,-4.5) -- (11.7,3.6);
+		
+		
+		\node[draw, above of=1] at (0.7, 0.5) {$A_1$};
+		\node[draw, above of=2] at (2.7, 0.5) {$A_2$};
+		\node[draw, above of=3] at (4.7, 0.5) {$A_3$};
+		\node[draw, above of=5] at (6.7, 0.5) {$A_4$};
+		\node[draw, above of=6] at (8.7, 0.5) {$A_5$};
+		\node[draw, above of=8] at (10.7, 0.5) {$A_6$};
+		\node[draw, above of=9] at (12.7, 0.5) {$A_7$};
+	\end{tikzpicture}
+	\caption{Разбиение вершин на уровни}
+	\label{fig:split}
+\end{center}
+\end{figure}
+
 \section{Определение наименьшего пути}
+
+Будем обозначать $l_i$ путь из $i$-ой вершины в 9-ую.
+
+\begin{enumerate}
+	\item[$A_7$\ ] $l_9 = 0 = l_9$
+	\item[$A_6$\ ] $l_8 = 4 = l_8$
+	\item[$A_5$\ ] $l_6 = 5 + l_8 = 5 + 4 = 9 = l_6$
+	\item[$A_4$\ ] $l_5 = \mintwo{3 + l_8}{4 + l_6} = \mintwo{3 + 4}{4 + 9} = 7$\\
+	$l_7 = 7 + l_8 = 7 + 4 = 11$
+	\item[$A_3$\ ] $l_3 = \mintwo{5 + l_8}{5 + l_5} = \mintwo{5 + 4}{5 + 7} = 9$
+\end{enumerate}
 
 \section{Определение наибольшего пути}
 
