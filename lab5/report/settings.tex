@@ -70,8 +70,9 @@
 \renewcommand{\phi}{\ensuremath{\varphi}}
 \renewcommand{\thefigure}{\arabic{figure}} 	
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newcommand*\sfrac[2]{{}^{#1}\!/_{#2}}
-\newcommand{\mintwo}[2]{\ensuremath{\left\{ \begin{smallmatrix} #1 \\ #2 \end{smallmatrix} \right\}}}
+\newcommand{\sfrac}[2]{{}^{#1}\!/_{#2}}
+\newcommand{\two}[2]{\ensuremath{\left\{ \begin{smallmatrix} #1 \\ #2 \end{smallmatrix} \right\}}}
+\newcommand{\three}[3]{\ensuremath{\left\{ \begin{smallmatrix} #1 \\ #2 \\ #3 \end{smallmatrix} \right\}}}
 
 \titleformat*{\section}{\large\bfseries} 
 \titleformat*{\subsection}{\normalsize\bfseries} 
@@ -92,3 +93,7 @@
 
 \DeclareMathOperator*{\argmin}{argmin}
 \DeclareMathOperator*{\argmax}{argmax}
+
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+\makeatother
