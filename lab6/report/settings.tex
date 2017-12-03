@@ -1,0 +1,99 @@
+\documentclass[a4paper,14pt]{extarticle}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{here}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{chngcntr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage{multicol}
+\usepackage{askmaps}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{hhline}
+\usepackage{enumitem}
+\usepackage{courier}
+\usepackage{wrapfig}
+\usetikzlibrary{arrows,automata}
+
+\setitemize{itemsep=0em}
+\setenumerate{itemsep=0em}
+
+\theoremstyle{definition}
+
+\pgfkeys{/pgf/number format/.cd,1000 sep={\,}}
+
+\definecolor{green}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{purple}{rgb}{0.58,0,0.82}
+
+\lstset{
+	language=python,
+	backgroundcolor=\color{white},   
+	commentstyle=\color{green},
+	keywordstyle=\color{blue},
+	numberstyle=\tiny\color{gray},
+	stringstyle=\color{purple},
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2,
+	frame=single,
+	inputpath={../code/}
+}
+
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\thefigure}{\arabic{figure}} 	
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\sfrac}[2]{{}^{#1}\!/_{#2}}
+\newcommand{\two}[2]{\ensuremath{\left\{ \begin{smallmatrix} #1 \\ #2 \end{smallmatrix} \right\}}}
+\newcommand{\three}[3]{\ensuremath{\left\{ \begin{smallmatrix} #1 \\ #2 \\ #3 \end{smallmatrix} \right\}}}
+
+\titleformat*{\section}{\large\bfseries} 
+\titleformat*{\subsection}{\normalsize\bfseries} 
+\titleformat*{\subsubsection}{\normalsize\bfseries} 
+\titleformat*{\paragraph}{\normalsize\bfseries} 
+\titleformat*{\subparagraph}{\normalsize\bfseries} 
+
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
+\counterwithin{table}{section}
+\newcommand{\sign}[1][5cm]{\makebox[#1]{\hrulefill}}
+\graphicspath{{../pics/}}
+\captionsetup{justification=centering,margin=1cm}
+\setlength\parindent{5ex}
+\def\arraystretch{1.3}
+\def\tabcolsep{12pt}
+\titlelabel{\thetitle.\quad}
+
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+\makeatother
