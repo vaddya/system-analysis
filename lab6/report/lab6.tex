@@ -6,7 +6,6 @@
 
 \tableofcontents
 \listoffigures
-%\listoftables
 \newpage
 
 \section{Техническое задание}
@@ -222,7 +221,7 @@ V(G_{\overline{5,3}}^{(0)}) = V(H) + 7 = 50 + 7 = 57
 V(G_{5,3}^{(0)}) = V(H) + 5 = 50 + 5 = 55 < 57 = V(G_{\overline{5,3}}^{(0)}) \Rightarrow V(G^{(0)}) = 55
 \end{equation*}
 
-\textbf{3.1} Допустим нет перехода $5 \rightarrow 3$. Тогда заменим его на бесконечность, а из строки и столбца, содержащих данный переход, вычтем минимальные элементы: из строки вычтем $7$, а из столбца $0$.
+\textbf{3.} Допустим нет перехода $5 \rightarrow 3$. Тогда заменим его на бесконечность, а из строки и столбца, содержащих данный переход, вычтем минимальные элементы: из строки вычтем $7$, а из столбца $0$.
 
 \begin{table}[H]
 \begin{center}
@@ -279,7 +278,7 @@ V(G_{5,3}^{(0)}) = V(H) + 5 = 50 + 5 = 55 < 57 = V(G_{\overline{5,3}}^{(0)}) \Ri
 \begin{gather*}
 \max = 13\ (6 \rightarrow 3) \\
 G^{(1)} = G_{6,3}^{(1)} \cup G_{\overline{6,3}}^{(1)} \\
-V(G_{\overline{6,3}}^{(1)}) = V(G^{(0)}) + 13 = 55 + 13 = 68
+V(G_{\overline{6,3}}^{(1)}) = V(G^{(0)}) + 13 = 57 + 13 = 70
 \end{gather*}
 
 Вычеркнем из таблицы $6$ строку и $3$ столбец, при этом запретим путь $3 \rightarrow 6$. Найдем минимумы для каждого столбца и каждой строки.
@@ -291,30 +290,30 @@ V(G_{\overline{6,3}}^{(1)}) = V(G^{(0)}) + 13 = 55 + 13 = 68
 	\label{tab:10}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
 		\hline
-		Из \textbackslash В & $2$ & $3$ & $4$ & $5$ & $6$ & $\min$ \\
+		Из \textbackslash В & $1$ & $2$ & $4$ & $5$ & $6$ & $\min$ \\
 		\hhline{|=#=|=|=|=|=|=|}
-		$1$ & $4$ & $9$ & $0$ & $9$ & $5$ & $0$ \\
+		$1$ & $\infty$ & $4$ & $0$ & $9$ & $5$ & $0$ \\
 		\hline
-		$2$ & $\infty$ & $25$ & $0$ & $17$ & $21$ & $0$ \\
+		$2$ & $2$ & $\infty$ & $0$ & $17$ & $21$ & $0$ \\
 		\hline
-		$3$ & $16$ & $\infty$ & $20$ & $0$ & $\infty$ & $0$ \\ 
+		$3$ & $7$ & $16$ & $20$ & $0$ & $\infty$ & $0$ \\ 
 		\hline
-		$4$ & $0$ & $16$ & $\infty$ & $14$ & $17$ & $0$ \\
+		$4$ & $0$ & $0$ & $\infty$ & $14$ & $17$ & $0$ \\
 		\hline
-		$5$ & $6$ & $\infty$ & $7$ & $\infty$ & $0$ & $0$ \\
-		\hhline{|=#=|=|=|=|=|=|}
-		$\min$ & $0$ & $9$ & $0$ & $8$ & $0$ & \\ 
+		$5$ & $0$ & $6$ & $7$ & $\infty$ & $0$ & $0$ \\
+		\hhline{|=#=|=|=|=|=|=|} 
+		$\min$ & $0$ & $0$ & $0$ & $0$ & $0$ & \\ 
 		\hline
 	\end{tabular}
 \end{center}
 \end{table}
 
-Сумма вычитаемых элементов равна $9$, следовательно:
+Сумма вычитаемых элементов равна $0$, следовательно:
 \begin{equation*}
-V(G_{6,3}^{(1)}) = V(G^{(0)}) + 9 = 64 < 68 = V(G_{\overline{3,6}}^{(1)}) \Rightarrow V(G^{(0)}) = 64
+V(G_{6,3}^{(1)}) = V(G^{(0)}) + 0 = 57 < 80 = V(G_{\overline{6,3}}^{(1)}) \Rightarrow V(G^{(1)}) = 57
 \end{equation*}
 
-\textbf{4.1} Заменим в таблице \ref{tab:10} нули на сумму минимального элемента строки и минимального элемента столбца. 
+Заменим в таблице \ref{tab:10} нули на сумму минимального элемента строки и минимального элемента столбца.
 
 \begin{table}[H]
 \begin{center}
@@ -323,26 +322,26 @@ V(G_{6,3}^{(1)}) = V(G^{(0)}) + 9 = 64 < 68 = V(G_{\overline{3,6}}^{(1)}) \Right
 	\label{tab:11}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
 		\hline
-		Из \textbackslash В & $2$ & $3$ & $4$ & $5$ & $6$ \\
+		Из \textbackslash В & $1$ & $2$ & $4$ & $5$ & $6$ \\
 		\hhline{|=#=|=|=|=|=|=|}
 		$1$ & $-$ & $-$ & $4$ & $-$ & $-$ \\
 		\hline
-		$2$ & $-$ & $-$ & $17$ & $-$ & $-$ \\
+		$2$ & $-$ & $-$ & $2$ & $-$ & $-$ \\
 		\hline
-		$3$ & $-$ & $-$ & $-$ & \redbold{$25$} & $-$ \\ 
+		$3$ & $-$ & $-$ & $-$ & \redbold{$16$} & $-$ \\ 
 		\hline
-		$4$ & $18$ & $-$ & $-$ & $-$ & $-$ \\
+		$4$ & $0$ & $14$ & $-$ & $-$ & $-$ \\
 		\hline
-		$5$ & $-$ & $-$ & $-$ & $-$ & $11$ \\
+		$5$ & $0$ & $-$ & $-$ & $-$ & $5$ \\
 		\hline
 	\end{tabular}
 \end{center}
 \end{table}
 
 \begin{gather*}
-\max = 25\ (3 \rightarrow 5) \\
-G^{(1)} = G_{3,5}^{(1)} \cup G_{\overline{3,5}}^{(1)} \\
-V(G_{\overline{3,5}}^{(1)}) = V(G^{(0)}) + 25 = 64 + 25 = 89
+\max = 16\ (3 \rightarrow 5) \\
+G^{(2)} = G_{3,5}^{(2)} \cup G_{\overline{3,5}}^{(2)} \\
+V(G_{\overline{3,5}}^{(2)}) = V(G^{(1)}) + 16 = 57 + 16 = 73
 \end{gather*}
 
 Вычеркнем из таблицы $3$ строку и $5$ столбец, при этом запретим путь $5 \rightarrow 6$. Найдем минимумы для каждого столбца и каждой строки.
@@ -351,62 +350,200 @@ V(G_{\overline{3,5}}^{(1)}) = V(G^{(0)}) + 25 = 64 + 25 = 89
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:10}
+	\label{tab:12}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
 		\hline
-		Из \textbackslash В & $2$ & $3$ & $4$ & $6$ & $\min$ \\
+		Из \textbackslash В & $1$ & $2$ & $4$ & $6$ & $\min$ \\
 		\hhline{|=#=|=|=|=|=|=|}
-		$1$ & $4$ & $9$ & $0$ & $5$ & $0$ \\
+		$1$ & $\infty$ & $4$ & $0$ & $5$ & $0$ \\
 		\hline
-		$2$ & $\infty$ & $25$ & $0$ & $21$ & $0$ \\
+		$2$ & $2$ & $\infty$ & $0$ & $21$ & $0$ \\
 		\hline
-		$4$ & $0$ & $16$ & $\infty$ & $17$ & $0$ \\
+		$4$ & $0$ & $0$ & $\infty$ & $17$ & $0$ \\
 		\hline
-		$5$ & $6$ & $\infty$ & $7$ & $\infty$ & $6$ \\
+		$5$ & $0$ & $6$ & $7$ & $\infty$ & $0$ \\
+		\hhline{|=#=|=|=|=|=|=|} 
+		$\min$ & $0$ & $0$ & $5$ & $0$ & \\ 
 		\hline
 	\end{tabular}
 \end{center}
 \end{table}
 
-Вычтем из строки $5$ минимальный элемент, равный $6$, после чего вычтем минимальный элемент из столбца $3$, равный $9$.
+Вычтем из столбца $6$ минимальный элемент, равный $5$.
 
 \begin{table}[H]
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:10}
+	\label{tab:13}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
 		\hline
-		Из \textbackslash В & $2$ & $3$ & $4$ & $6$ & $\min$ \\
+		Из \textbackslash В & $1$ & $2$ & $4$ & $6$ & $\min$ \\
 		\hhline{|=#=|=|=|=|=|=|}
-		$1$ & $4$ & $0$ & $0$ & $5$ & $0$ \\
+		$1$ & $\infty$ & $4$ & $0$ & $0$ & $0$ \\
 		\hline
-		$2$ & $\infty$ & $16$ & $0$ & $21$ & $0$ \\
+		$2$ & $2$ & $\infty$ & $0$ & $16$ & $0$ \\
 		\hline
-		$4$ & $0$ & $7$ & $\infty$ & $17$ & $0$ \\
+		$4$ & $0$ & $0$ & $\infty$ & $12$ & $0$ \\
 		\hline
-		$5$ & $0$ & $\infty$ & $1$ & $\infty$ & $6$ \\
-		\hhline{|=#=|=|=|=|=|=|}
-		$\min$ & $0$ & $9$ & $0$ & $0$ & \\ 
+		$5$ & $0$ & $6$ & $7$ & $\infty$ & $0$ \\
+		\hhline{|=#=|=|=|=|=|=|} 
+		$\min$ & $0$ & $0$ & $5$ & $0$ & \\ 
 		\hline
 	\end{tabular}
 \end{center}
 \end{table}
 
-Сумма вычитаемых элементов равна $15$, следовательно:
+Сумма вычитаемых элементов равна $5$, следовательно:
 \begin{equation*}
-V(G_{3,5}^{(1)}) = V(G^{(0)}) + 15 = 79 < 89 = V(G_{\overline{3,6}}^{(1)}) \Rightarrow V(G^{(1)}) = 79
+V(G_{3,5}^{(2)}) = V(G^{(1)}) + 5 = 62 < 73 = V(G_{\overline{3,5}}^{(2)}) \Rightarrow V(G^{(2)}) = 62
 \end{equation*}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\textbf{4.2} Допустим нет перехода $6 \rightarrow 3$. Тогда в таблице \ref{tab:8} заменим его на бесконечность, а из строки и столбца, содержащих данный переход, вычтем минимальные элементы: из строки вычтем $4$, а из столбца $9$.
+Заменим в таблице \ref{tab:13} нули на сумму минимального элемента строки и минимального элемента столбца.
 
 \begin{table}[H]
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:11}
+	\label{tab:14}
+	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+		\hline
+		Из \textbackslash В & $1$ & $2$ & $4$ & $6$\\
+		\hhline{|=#=|=|=|=|=|=|}
+		$1$ & $-$ & $-$ & $0$ & \redbold{$12$} \\
+		\hline
+		$2$ & $-$ & $-$ & $2$ & $-$ \\
+		\hline
+		$4$ & $0$ & $4$ & $-$ & $-$ \\
+		\hline
+		$5$ & $6$ & $-$ & $-$ & $-$ \\
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+\begin{gather*}
+\max = 12\ (1 \rightarrow 6) \\
+G^{(3)} = G_{1,6}^{(3)} \cup G_{\overline{1,6}}^{(3)} \\
+V(G_{\overline{1,6}}^{(3)}) = V(G^{(2)}) + 12 = 62 + 12 = 74
+\end{gather*}
+
+Вычеркнем из таблицы $1$ строку и $6$ столбец, при этом запретим путь $5 \rightarrow 1$. Найдем минимумы для каждого столбца и каждой строки.
+
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{15pt}
+	\caption{Таблица переходов}
+	\label{tab:15}
+	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+		\hline
+		Из \textbackslash В & $1$ & $2$ & $4$ & $\min$ \\
+		\hhline{|=#=|=|=|=|=|=|}
+		$2$ & $2$ & $\infty$ & $0$ & $0$ \\
+		\hline
+		$4$ & $0$ & $0$ & $\infty$ & $0$ \\
+		\hline
+		$5$ & $\infty$ & $6$ & $7$ & $6$ \\
+		\hhline{|=#=|=|=|=|=|=|} 
+		$\min$ & $0$ & $0$ & $0$ & \\ 
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Вычтем из строки $5$ минимальный элемент, равный $6$.
+
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{15pt}
+	\caption{Таблица переходов}
+	\label{tab:16}
+	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+		\hline
+		Из \textbackslash В & $1$ & $2$ & $4$ & $\min$ \\
+		\hhline{|=#=|=|=|=|=|=|}
+		$2$ & $2$ & $\infty$ & $0$ & $0$ \\
+		\hline
+		$4$ & $0$ & $0$ & $\infty$ & $0$ \\
+		\hline
+		$5$ & $\infty$ & $0$ & $1$ & $6$ \\
+		\hhline{|=#=|=|=|=|=|=|} 
+		$\min$ & $0$ & $0$ & $0$ & \\ 
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Сумма вычитаемых элементов равна $6$, следовательно:
+\begin{equation*}
+V(G_{3,5}^{(2)}) = V(G^{(1)}) + 6 = 68 < 74 = V(G_{\overline{3,5}}^{(2)}) \Rightarrow V(G^{(2)}) = 68
+\end{equation*}
+
+Заменим в таблице \ref{tab:16} нули на сумму минимального элемента строки и минимального элемента столбца.
+
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{15pt}
+	\caption{Таблица переходов}
+	\label{tab:17}
+	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+		\hline
+		Из \textbackslash В & $1$ & $2$ & $4$ \\
+		\hhline{|=#=|=|=|=|=|=|}
+		$2$ & $-$ & $-$ & \redbold{$3$} \\
+		\hline
+		$4$ & $2$ & $0$ & $-$ \\
+		\hline
+		$5$ & $-$ & $1$ & $-$ \\
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+\begin{gather*}
+\max = 3\ (2 \rightarrow 4) \\
+G^{(4)} = G_{2,4}^{(4)} \cup G_{\overline{2,4}}^{(4)} \\
+V(G_{\overline{2,4}}^{(4)}) = V(G^{(3)}) + 3 = 68 + 3 = 71
+\end{gather*}
+
+Вычеркнем из таблицы $2$ строку и $4$ столбец, при этом запретим путь $4 \rightarrow 2$. Найдем минимумы для каждого столбца и каждой строки.
+
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{15pt}
+	\caption{Таблица переходов}
+	\label{tab:18}
+	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+		\hline
+		Из \textbackslash В & $1$ & $2$ & $\min$ \\
+		\hhline{|=#=|=|=|=|=|=|}
+		$4$ & $0$ & $\infty$ & $0$ \\
+		\hline
+		$5$ & $\infty$ & $0$ & $0$ \\
+		\hhline{|=#=|=|=|=|=|=|} 
+		$\min$ & $0$ & $0$ & \\ 
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Сумма вычитаемых элементов равна $0$, следовательно:
+\begin{equation*}
+V(G_{2,4}^{(4)}) = V(G^{(3)}) + 0 = 68 < 71 = V(G_{\overline{2,4}}^{(4)}) \Rightarrow V(G^{(4)}) = 68
+\end{equation*}
+
+Осталось всего два незапрещенных перехода: $4 \rightarrow 1$ и $5 \rightarrow 2$, следовательно данная ветка образует следующий путь:
+\begin{equation*}
+1 \rightarrow 6 \rightarrow 3 \rightarrow 5 \rightarrow 2 \rightarrow 4 \rightarrow 1
+\end{equation*}
+
+\textbf{4} Допустим нет перехода $6 \rightarrow 3$. Тогда в таблице \ref{tab:8} заменим его на бесконечность, а из строки и столбца, содержащих данный переход, вычтем минимальные элементы: из строки вычтем $4$, а из столбца $9$.
+
+\begin{table}[H]
+\begin{center}
+	\def\tabcolsep{15pt}
+	\caption{Таблица переходов}
+	\label{tab:19}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ \\
@@ -427,13 +564,13 @@ V(G_{3,5}^{(1)}) = V(G^{(0)}) + 15 = 79 < 89 = V(G_{\overline{3,6}}^{(1)}) \Righ
 \end{center}
 \end{table}
 
-Заменим в таблице \ref{tab:11} нули на сумму минимального элемента строки и минимального элемента столбца.
+Заменим в таблице \ref{tab:19} нули на сумму минимального элемента строки и минимального элемента столбца.
 
 \begin{table}[H]
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:11}
+	\label{tab:20}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ \\
@@ -454,6 +591,7 @@ V(G_{3,5}^{(1)}) = V(G^{(0)}) + 15 = 79 < 89 = V(G_{\overline{3,6}}^{(1)}) \Righ
 \end{center}
 \end{table}
 
+\vspace{-1cm}
 \begin{gather*}
 \max = 7\ (1 \rightarrow 3) \\
 G^{(2)} = G_{1,3}^{(2)} \cup G_{\overline{1,3}}^{(2)} \\
@@ -466,7 +604,7 @@ V(G_{\overline{1,3}}^{(2)}) = V(G^{(1)}) + 7 = 68 + 7 = 75
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:11}
+	\label{tab:21}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $4$ & $5$ & $6$ & $\min$ \\
@@ -493,13 +631,13 @@ V(G_{\overline{1,3}}^{(2)}) = V(G^{(1)}) + 7 = 68 + 7 = 75
 V(G_{1,3}^{(2)}) = V(G^{(1)}) + 0 = 68 < 75 = V(G_{\overline{1,3}}^{(2)}) \Rightarrow V(G^{(2)}) = 68
 \end{equation*}
 
-Заменим в таблице \ref{tab:11} нули на сумму минимального элемента строки и минимального элемента столбца.
+Заменим в таблице \ref{tab:20} нули на сумму минимального элемента строки и минимального элемента столбца.
 
 \begin{table}[H]
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:11}
+	\label{tab:22}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $4$ & $5$ & $6$ \\
@@ -519,6 +657,7 @@ V(G_{1,3}^{(2)}) = V(G^{(1)}) + 0 = 68 < 75 = V(G_{\overline{1,3}}^{(2)}) \Right
 \end{center}
 \end{table}
 
+\vspace{-1cm}
 \begin{gather*}
 \max = 9\ (2 \rightarrow 4) \\
 G^{(3)} = G_{2,4}^{(3)} \cup G_{\overline{2,4}}^{(3)} \\
@@ -531,7 +670,7 @@ V(G_{\overline{2,4}}^{(3)}) = V(G^{(2)}) + 9 = 68 + 9 = 77
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:11}
+	\label{tab:23}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $5$ & $6$ & $\min$ \\
@@ -557,7 +696,7 @@ V(G_{\overline{2,4}}^{(3)}) = V(G^{(2)}) + 9 = 68 + 9 = 77
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:11}
+	\label{tab:24}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $5$ & $6$ & $\min$ \\
@@ -582,15 +721,13 @@ V(G_{\overline{2,4}}^{(3)}) = V(G^{(2)}) + 9 = 68 + 9 = 77
 V(G_{2,4}^{(3)}) = V(G^{(2)}) + 6 = 74 < 77 = V(G_{\overline{2,4}}^{(3)}) \Rightarrow V(G^{(3)}) = 74
 \end{equation*}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\textbf{3.2} Заменим в таблице \ref{tab:11} нули на сумму минимального элемента строки и минимального элемента столбца.
+\textbf{5} Заменим в таблице \ref{tab:24} нули на сумму минимального элемента строки и минимального элемента столбца.
 
 \begin{table}[H]
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:8}
+	\label{tab:25}
 	\begin{tabular}{|c||c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $4$ & $5$ & $6$ \\
@@ -609,6 +746,7 @@ V(G_{2,4}^{(3)}) = V(G^{(2)}) + 6 = 74 < 77 = V(G_{\overline{2,4}}^{(3)}) \Right
 \end{center}
 \end{table}
 
+\vspace{-1cm}
 \begin{gather*}
 \max = 12\ (3 \rightarrow 6) \\
 G^{(1)} = G_{3,6}^{(1)} \cup G_{\overline{3,6}}^{(1)} \\
@@ -621,7 +759,7 @@ V(G_{\overline{3,6}}^{(1)}) = V(G^{(0)}) + 12 = 55 + 12 = 67
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:9}
+	\label{tab:26}
 	\begin{tabular}{|c||c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $4$ & $5$ & $\min$ \\
@@ -646,7 +784,7 @@ V(G_{\overline{3,6}}^{(1)}) = V(G^{(0)}) + 12 = 55 + 12 = 67
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:10}
+	\label{tab:27}
 	\begin{tabular}{|c||c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $4$ & $5$ & $\min$ \\
@@ -670,15 +808,13 @@ V(G_{\overline{3,6}}^{(1)}) = V(G^{(0)}) + 12 = 55 + 12 = 67
 V(G_{3,6}^{(1)}) = V(G^{(0)}) + 8 = 63 < 67 = V(G_{\overline{3,6}}^{(1)}) \Rightarrow V(G^{(1)}) = 63
 \end{equation*}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\textbf{4.1.} Допустим нет перехода $3 \rightarrow 6$. Тогда в таблице \ref{tab:7} заменим его на бесконечность, а из строки и столбца, содержащих данный переход, вычтем минимальные элементы: из строки вычтем $7$, а из столбца $5$.
+\textbf{6.} Допустим нет перехода $3 \rightarrow 6$. Тогда в таблице \ref{tab:7} заменим его на бесконечность, а из строки и столбца, содержащих данный переход, вычтем минимальные элементы: из строки вычтем $7$, а из столбца $5$.
 
 \begin{table}[H]
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:111}
+	\label{tab:28}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $4$ & $5$ & $6$ \\
@@ -697,7 +833,7 @@ V(G_{3,6}^{(1)}) = V(G^{(0)}) + 8 = 63 < 67 = V(G_{\overline{3,6}}^{(1)}) \Right
 \end{center}
 \end{table}
 
-Заменим в таблице \ref{tab:111} нули на сумму минимального элемента строки и минимального элемента столбца. 
+Заменим в таблице \ref{tab:28} нули на сумму минимального элемента строки и минимального элемента столбца. 
 
 \begin{table}[H]
 \begin{center}
@@ -722,19 +858,20 @@ V(G_{3,6}^{(1)}) = V(G^{(0)}) + 8 = 63 < 67 = V(G_{\overline{3,6}}^{(1)}) \Right
 \end{center}
 \end{table}
 
+\vspace{-1cm}
 \begin{gather*}
 \max = 12\ (1 \rightarrow 6) \\
 G^{(2)} = G_{1,6}^{(2)} \cup G_{\overline{1,6}}^{(2)} \\
 V(G_{\overline{1,6}}^{(2)}) = V(G^{(1)}) + 6 = 67 + 6 = 73
 \end{gather*}
 
-Вычеркнем из таблицы \ref{tab:111} строку $1$ и столбец $6$, при этом запретим переход $6 \rightarrow 1$. Найдем минимумы для каждого столбца и каждой строки.
+Вычеркнем из таблицы \ref{tab:28} строку $1$ и столбец $6$, при этом запретим переход $6 \rightarrow 1$. Найдем минимумы для каждого столбца и каждой строки.
 
 \begin{table}[H]
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:112}
+	\label{tab:29}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $4$ & $5$ & $\min$ \\
@@ -758,13 +895,13 @@ V(G_{\overline{1,6}}^{(2)}) = V(G^{(1)}) + 6 = 67 + 6 = 73
 V(G_{1,6}^{(2)}) = V(G^{(1)}) + 0 = 67 < 73 = V(G_{\overline{1,6}}^{(2)})\Rightarrow V(G^{(2)}) = 67
 \end{equation*}
 
-\textbf{4.2ff.} Заменим в таблице \ref{tab:112} нули на сумму минимального элемента строки и минимального элемента столбца. 
+\textbf{7.} Заменим в таблице \ref{tab:30} нули на сумму минимального элемента строки и минимального элемента столбца. 
 
 \begin{table}[H]
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:112}
+	\label{tab:30}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $4$ & $5$ \\
@@ -781,19 +918,20 @@ V(G_{1,6}^{(2)}) = V(G^{(1)}) + 0 = 67 < 73 = V(G_{\overline{1,6}}^{(2)})\Righta
 \end{center}
 \end{table}
 
+\vspace{-1cm}
 \begin{gather*}
 \max = 21\ (6 \rightarrow 5) \\
 G^{(3)} = G_{6,5}^{(3)} \cup G_{\overline{6,5}}^{(3)} \\
 V(G_{\overline{6,5}}^{(3)}) = V(G^{(2)}) + 21 = 67 + 21 = 88
 \end{gather*}
 
-Вычеркнем из таблицы \ref{tab:112} строку $6$ и столбец $5$, при этом запретим переход $3 \rightarrow 1$. Найдем минимумы для каждого столбца и каждой строки.
+Вычеркнем из таблицы \ref{tab:29} строку $6$ и столбец $5$, при этом запретим переход $3 \rightarrow 1$. Найдем минимумы для каждого столбца и каждой строки.
 
 \begin{table}[H]
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:112}
+	\label{tab:31}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $4$ & $\min$ \\
@@ -814,7 +952,7 @@ V(G_{\overline{6,5}}^{(3)}) = V(G^{(2)}) + 21 = 67 + 21 = 88
 \begin{center}
 	\def\tabcolsep{15pt}
 	\caption{Таблица переходов}
-	\label{tab:112}
+	\label{tab:32}
 	\begin{tabular}{|c||c|c|c|c|c|c|c|}
 		\hline
 		Из \textbackslash В & $1$ & $2$ & $4$ & $\min$ \\
@@ -836,218 +974,9 @@ V(G_{\overline{6,5}}^{(3)}) = V(G^{(2)}) + 21 = 67 + 21 = 88
 V(G_{6,5}^{(3)}) = V(G^{(2)}) + 9 = 76 < 88 = V(G_{\overline{6,5}}^{(3)})\Rightarrow V(G^{(3)}) = 76
 \end{equation*}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$76 > 68$, следовательно эту ветку можно не разивать.\\
 
-\textbf{4.2.} Заменим в таблице \ref{tab:9} нули на сумму минимального элемента строки и минимального элемента столбца. 
-
-\begin{table}[H]
-\begin{center}
-	\def\tabcolsep{15pt}
-	\caption{Таблица переходов}
-	\label{tab:11}
-	\begin{tabular}{|c||c|c|c|c|c|c|}
-		\hline
-		Из \textbackslash В & $1$ & $2$ & $4$ & $5$ \\
-		\hhline{|=#=|=|=|=|}
-		$1$ & $-$ & $-$ & $0$ & $5$ \\
-		\hline
-		$2$ & $-$ & $-$ & $2$ & $-$ \\
-		\hline
-		$4$ & $0$ & $4$ & $-$ & $-$ \\
-		\hline
-		$6$ & \textcolor{red}{\boldmath$8$} & $-$ & $-$ & $-$ \\
-		\hline
-	\end{tabular}
-\end{center}
-\end{table}
-
-\begin{gather*}
-\max = 8\ (6 \rightarrow 1) \\
-G^{(2)} = G_{6,1}^{(2)} \cup G_{\overline{6,1}}^{(2)} \\
-V(G_{\overline{6,1}}^{(2)}) = V(G^{(1)}) + 8 = 63 + 8 = 71
-\end{gather*}
-
-Вычеркнем из таблицы \ref{tab:10} строку $6$ и столбец $1$, при этом запретим переход $1 \rightarrow 5$. Найдем минимумы для каждого столбца и каждой строки.
-
-%\begin{table}[H]
-%\begin{center}
-%	\def\tabcolsep{15pt}
-%	\caption{Таблица переходов}
-%	\label{tab:12}
-%	\begin{tabular}{|c||c|c|c|c|}
-%		\hline
-%		Из \textbackslash В & $2$ & $4$ & $5$ & $\min$ \\
-%		\hhline{|=#=|=|=|=|}
-%		$1$ & $4$ & $0$ & $\infty$ & $0$ \\
-%		\hline
-%		$2$ & $\infty$ & $0$ & $8$ & $0$ \\
-%		\hline
-%		$4$ & $0$ & $\infty$ & $5$ & $0$ \\
-%		\hhline{|=#=|=|=|=|}
-%		$\min$ & $0$ & $0$ & $5$ & \\ 
-%		\hline
-%	\end{tabular}
-%\end{center}
-%\end{table}
-%
-%Вычтем из столбца $5$ минимальный элемент, равный $5$.
-
-\begin{table}[H]
-\begin{center}
-	\def\tabcolsep{15pt}
-	\caption{Таблица переходов}
-	\label{tab:13}
-	\begin{tabular}{|c||c|c|c|c|}
-		\hline
-		Из \textbackslash В & $2$ & $4$ & $5$ & $\min$ \\
-		\hhline{|=#=|=|=|=|}
-		$1$ & $4$ & $0$ & $\infty$ & $0$ \\
-		\hline
-		$2$ & $\infty$ & $0$ & $3$ & $0$ \\
-		\hline
-		$4$ & $0$ & $\infty$ & $0$ & $0$ \\
-		\hhline{|=#=|=|=|=|}
-		$\min$ & $0$ & $0$ & $5$ & \\ 
-		\hline
-	\end{tabular}
-\end{center}
-\end{table}
-
-Сумма вычитаемых элементов равна $5$, следовательно:
-\begin{equation*}
-V(G_{6,1}^{(2)}) = V(G^{(1)}) + 5 = 68 < 71 = V(G_{\overline{6,1}}^{(2)})\Rightarrow V(G^{(2)}) = 68
-\end{equation*}
-
-\textbf{5.} Заменим в таблице \ref{tab:13} нули на сумму минимального элемента строки и минимального элемента столбца. При этом запретим переход $6 \rightarrow 1$.
-
-\begin{table}[H]
-\begin{center}
-	\def\tabcolsep{15pt}
-	\caption{Таблица переходов}
-	\label{tab:14}
-	\begin{tabular}{|c||c|c|c|}
-		\hline
-		Из \textbackslash В & $2$ & $4$ & $5$ \\
-		\hhline{|=#=|=|=|}
-		$1$ & $-$ & \textcolor{red}{\boldmath$4$} & $-$ \\
-		\hline
-		$2$ & $-$ & $3$ & $-$ \\
-		\hline
-		$4$ & \textcolor{red}{\boldmath$4$} & $-$ & $3$ \\
-		\hline
-	\end{tabular}
-\end{center}
-\end{table}
-
-\textbf{5.1.} Первый максимум:
-\begin{gather*}
-\max = 4\ (1 \rightarrow 4) \\
-G^{(3)} = G_{1,4}^{(3)} \cup G_{\overline{1,4}}^{(3)} \\
-V(G_{\overline{1,4}}^{(3)}) = V(G^{(2)}) + 4 = 68 + 4 = 72
-\end{gather*}
-
-Вычеркнем из таблицы \ref{tab:13} строку $1$ и столбец $4$. Запретим переход $4 \rightarrow 5$. Найдем минимумы для каждого столбца и каждой строки.
-
-\begin{table}[H]
-\begin{center}
-	\def\tabcolsep{15pt}
-	\caption{Таблица переходов}
-	\label{tab:15}
-	\begin{tabular}{|c||c|c|c|}
-		\hline
-		Из \textbackslash В & $2$ & $5$ & $\min$ \\
-		\hhline{|=#=|=|=|}
-		$2$ & $\infty$ & $3$ & $3$ \\
-		\hline
-		$4$ & $0$ & $\infty$ & $0$ \\
-		\hline
-	\end{tabular}
-\end{center}
-\end{table}
-
-Вычтем из строки $2$ минимальный элемент.
-
-\begin{table}[H]
-\begin{center}
-	\def\tabcolsep{15pt}
-	\caption{Таблица переходов}
-	\label{tab:16}
-	\begin{tabular}{|c||c|c|c|}
-		\hline
-		Из \textbackslash В & $2$ & $5$ & $\min$ \\
-		\hhline{|=#=|=|=|}
-		$2$ & $\infty$ & $0$ & $3$ \\
-		\hline
-		$4$ & $0$ & $\infty$ & $0$ \\
-		\hhline{|=#=|=|=|}
-		$\min$ & $0$ & $0$ & \\ 
-		\hline
-	\end{tabular}
-\end{center}
-\end{table}
-
-Сумма вычитаемых элементов равна $3$, следовательно:
-\begin{equation*}
-V(G_{1,4}^{(3)}) = V(G^{(2)}) + 3 = 71 < 72 = V(G_{\overline{1,4}}^{(3)}) \Rightarrow V(G^{(3)}) = 71
-\end{equation*}
-
-\textbf{6.1.} Остаются только два не запрещенных пути: $2 \rightarrow 5$ и $4 \rightarrow 2$ общей стоимостью $0$. Общая стоимость пути равна $71$. \\
-
-\textbf{5.2.} Второй максимум:
-\begin{gather*}
-\max = 4\ (4 \rightarrow 2) \\
-G^{(3)} = G_{4,2}^{(3)} \cup G_{\overline{4,2}}^{(3)} \\
-V(G_{\overline{4,2}}^{(3)}) = V(G^{(2)}) + 4 = 68 + 4 = 72
-\end{gather*}
-
-Вычеркнем из таблицы \ref{tab:13} строку $4$ и столбец $2$. Запретим переход $2 \rightarrow 4$. Найдем минимумы для каждого столбца и каждой строки.
-
-\begin{table}[H]
-\begin{center}
-	\def\tabcolsep{15pt}
-	\caption{Таблица переходов}
-	\label{tab:17}
-	\begin{tabular}{|c||c|c|c|}
-		\hline
-		Из \textbackslash В & $4$ & $5$ & $\min$ \\
-		\hhline{|=#=|=|=|}
-		$1$ & $0$ & $\infty$ & $0$ \\
-		\hline
-		$2$ & $\infty$ & $3$ & $3$ \\
-		\hline
-	\end{tabular}
-\end{center}
-\end{table}
-
-Вычтем из строки $2$ минимальный элемент.
-
-\begin{table}[H]
-\begin{center}
-	\def\tabcolsep{15pt}
-	\caption{Таблица переходов}
-	\label{tab:18}
-	\begin{tabular}{|c||c|c|c|}
-		\hline
-		Из \textbackslash В & $4$ & $5$ & $\min$ \\
-		\hhline{|=#=|=|=|}
-		$1$ & $0$ & $\infty$ & $0$ \\
-		\hline
-		$2$ & $\infty$ & $0$ & $3$ \\
-		\hhline{|=#=|=|=|}
-		$\min$ & $0$ & $0$ & \\ 
-		\hline
-	\end{tabular}
-\end{center}
-\end{table}
-
-Сумма вычитаемых элементов равна $3$, следовательно:
-\begin{equation*}
-V(G_{4,2}^{(3)}) = V(G^{(2)}) + 3 = 71 < 72 = V(G_{\overline{4,2}}^{(3)}) \Rightarrow V(G^{(3)}) = 71
-\end{equation*}
-
-\textbf{6.2.} Остаются только два не запрещенных пути: $2 \rightarrow 5$ и $1 \rightarrow 4$ общей стоимостью $0$. Общая стоимость пути равна $71$. \\
-
-\textbf{7.} Оба полученных пути включается одинаковые переходы. Таким образом, оптимальным является путь, длина которого равна $71$:
+\noindent \textbf{8.} Таким образом, оптимальным является путь, длина которого равна $68$:
 
 \begin{figure}[H]
 \begin{center}
@@ -1056,25 +985,23 @@ V(G_{4,2}^{(3)}) = V(G^{(2)}) + 3 = 71 < 72 = V(G_{\overline{4,2}}^{(3)}) \Right
 	  \tikzstyle{every state}=[fill=white,draw=black,text=black]
 	
 	  \node[state] (1) {$1$};
-	  \node[state] (4) [right of=1] {$4$};
-	  \node[state] (2) [right of=4] {$2$};
-	  \node[state] (5) [right of=2] {$5$};
-	  \node[state] (3) [right of=5] {$3$};
-	  \node[state] (6) [right of=3] {$6$};
+	  \node[state] (6) [right of=1] {$4$};
+	  \node[state] (3) [right of=6] {$2$};
+	  \node[state] (5) [right of=3] {$5$};
+	  \node[state] (2) [right of=5] {$3$};
+	  \node[state] (4) [right of=2] {$6$};
 	
-	  \path (1) edge node {$10$} (4)
-	  		(4) edge node {$7$} (2)
-	  		(2) edge node {$25$} (5)
-	  		(5) edge node {$7$} (3)
-	  		(3) edge node {$10$} (6)
-	  		(6) edge [bend right] node {$12$} (1);
+	  \path (1) edge node {$17$} (6)
+	  		(6) edge node {$7$} (3)
+	  		(3) edge node {$8$} (5)
+	  		(5) edge node {$20$} (2)
+	  		(2) edge node {$8$} (4)
+	  		(4) edge [bend right] node {$8$} (1);
 	\end{tikzpicture}
 	\caption{Оптимальный путь}
 	\label{fig:transition_graph}
 \end{center}
 \end{figure}
-
-\newpage
 
 \begin{figure}[H]
 \begin{center}
@@ -1084,11 +1011,7 @@ V(G_{4,2}^{(3)}) = V(G^{(2)}) + 3 = 71 < 72 = V(G_{\overline{4,2}}^{(3)}) \Right
 		[55, edge label={node[midway,left] {$5 \rightarrow 3$}}  
 			[63, edge label={node[midway,left] {$3 \rightarrow 6$}} 
 				[68, edge label={node[midway,left] {$6 \rightarrow 1$}}
-					[71, edge label={node[midway,left] {$1 \rightarrow 4$}}
-						[71, edge label={node[midway,right] {$2 \rightarrow 5$}}
-							[71, edge label={node[midway,right] {$4 \rightarrow 2$}}]
-						]
-					]
+					[71, edge label={node[midway,left] {$1 \rightarrow 4$}}]
 					[72, edge label={node[midway,right] {$1 \not\rightarrow 4$}}]
 				]
 				[71, edge label={node[midway,right] {$6 \not\rightarrow 1$}}]
@@ -1102,11 +1025,24 @@ V(G_{4,2}^{(3)}) = V(G^{(2)}) + 3 = 71 < 72 = V(G_{\overline{4,2}}^{(3)}) \Right
 			] 
 		]
 		[57, edge label={node[midway,right] {$5 \not\rightarrow 3$}}
-			[64, edge label={node[midway,left] {$6 \rightarrow 3$}}
-				[79, edge label={node[midway,left] {$3 \rightarrow 5$}}]
-				[89, edge label={node[midway,right] {$3 \not\rightarrow 5$}}]
+			[57, edge label={node[midway,left] {$6 \rightarrow 3$}}
+				[62, edge label={node[midway,left] {$3 \rightarrow 5$}}
+					[68, edge label={node[midway,left] {$1 \rightarrow 6$}}
+						[68, edge label={node[midway,left] {$2 \rightarrow 4$}}
+							[68, edge label={node[midway,left] {$2 \rightarrow 4$}}
+								[68, edge label={node[midway,left] {$4 \rightarrow 1$}}
+									[68, edge label={node[midway,left] {$5 \rightarrow 2$}}]								
+								]
+							]
+							[71, edge label={node[midway,right] {$2 \not\rightarrow 4$}}]
+						]
+						[71, edge label={node[midway,right] {$4 \not\rightarrow 4$}}]
+					]
+					[74, edge label={node[midway,right] {$1 \not\rightarrow 6$}}]
+				]
+				[73, edge label={node[midway,right] {$3 \not\rightarrow 5$}}]
 			]
-			[68, edge label={node[midway,right] {$6 \not\rightarrow 3$}}
+			[70, edge label={node[midway,right] {$6 \not\rightarrow 3$}}
 				[68, edge label={node[midway,left] {$1 \rightarrow 3$}}
 					[74, edge label={node[midway,left] {$2 \rightarrow 2$}}]
 					[77, edge label={node[midway,right] {$4 \not\rightarrow 4$}}]
