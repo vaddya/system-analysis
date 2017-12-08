@@ -982,11 +982,11 @@ $76 > 68$, следовательно эту ветку можно не рази
 	  \tikzstyle{every state}=[fill=white,draw=black,text=black]
 	
 	  \node[state] (1) {$1$};
-	  \node[state] (6) [right of=1] {$4$};
-	  \node[state] (3) [right of=6] {$2$};
+	  \node[state] (6) [right of=1] {$6$};
+	  \node[state] (3) [right of=6] {$3$};
 	  \node[state] (5) [right of=3] {$5$};
-	  \node[state] (2) [right of=5] {$3$};
-	  \node[state] (4) [right of=2] {$6$};
+	  \node[state] (2) [right of=5] {$2$};
+	  \node[state] (4) [right of=2] {$4$};
 	
 	  \path (1) edge node {$17$} (6)
 	  		(6) edge node {$7$} (3)
@@ -1026,14 +1026,14 @@ $76 > 68$, следовательно эту ветку можно не рази
 				[62, edge label={node[midway,left] {$3 \rightarrow 5$}}
 					[68, edge label={node[midway,left] {$1 \rightarrow 6$}}
 						[68, edge label={node[midway,left] {$2 \rightarrow 4$}}
-							[68, edge label={node[midway,left] {$2 \rightarrow 4$}}
+							%[68, edge label={node[midway,left] {$2 \rightarrow 4$}}
 								[68, edge label={node[midway,left] {$4 \rightarrow 1$}}
 									[68, edge label={node[midway,left] {$5 \rightarrow 2$}}]								
 								]
-							]
-							[71, edge label={node[midway,right] {$2 \not\rightarrow 4$}}]
+							%]
+							%[71, edge label={node[midway,right] {$2 \not\rightarrow 4$}}]
 						]
-						[71, edge label={node[midway,right] {$4 \not\rightarrow 4$}}]
+						[71, edge label={node[midway,right] {$2 \not\rightarrow 4$}}]
 					]
 					[74, edge label={node[midway,right] {$1 \not\rightarrow 6$}}]
 				]
@@ -1041,8 +1041,8 @@ $76 > 68$, следовательно эту ветку можно не рази
 			]
 			[70, edge label={node[midway,right] {$6 \not\rightarrow 3$}}
 				[68, edge label={node[midway,left] {$1 \rightarrow 3$}}
-					[74, edge label={node[midway,left] {$2 \rightarrow 2$}}]
-					[77, edge label={node[midway,right] {$4 \not\rightarrow 4$}}]
+					[74, edge label={node[midway,left] {$2 \rightarrow 4$}}]
+					[77, edge label={node[midway,right] {$2 \not\rightarrow 4$}}]
 				]
 				[75, edge label={node[midway,right] {$1 \not\rightarrow 3$}}]
 			]
