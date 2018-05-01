@@ -1,0 +1,107 @@
+\include{settings}
+
+\begin{document}
+
+\include{titlepage}
+
+\tableofcontents
+\listoftables
+\listoffigures
+\newpage
+
+\section{Техническое задание}
+
+Задана сеть массового обслуживания, включающая $M = 4$ узла и источник с интенсивностью $\lambda_0$, заданы матрица передач и описание узлов как систем массового обслуживания (число каналов, интенсивность обслуживания). Необходимо:
+
+\begin{enumerate}
+	\item Построить граф сети;
+	\item Выяснить, может ли данная сеть работать в установившемся режиме;
+	\item Для заданной интенсивности $\lambda_0$:
+		\begin{enumerate}[label*=\arabic*]
+			\item Определить наиболее и наименее нагруженные узлы;
+			\item Определить среднее число требований, среднее число ожидающих требований,
+			среднее время пребывания и среднее время ожидания для каждого узла;
+			\item Определить среднее число требований, среднее число ожидающих требований,
+			среднее время пребывания и среднее время ожидания для всей сети;
+			\item Результаты оформить в итоговой таблице.
+		\end{enumerate}
+\end{enumerate}
+
+\section{Исходные данные}
+
+\paragraph{Вариант 32}
+
+\begin{itemize}
+	\item $\lambda_0 = 3.5$
+	\item Матрица передач:
+	\begin{displaymath}
+		\Pi = \begin{pmatrix}
+			0 & 1 & 0 & 0 & 0 \\
+			\sfrac{3}{4} & 0 & 0 & \sfrac{1}{4} & 0 \\
+			0 & 0 & 0 & 0 & 1 \\
+			0 & \sfrac{9}{17} & \sfrac{8}{17} & 0 & 0 \\
+			0 & \sfrac{9}{14} & 0 & \sfrac{5}{14} & 0
+		\end{pmatrix}
+	\end{displaymath}
+	\item 1 узел: система $M/M/2$, $m = 10$
+	\item 2 узел: система $M/M/1$, $m = 3$
+	\item 3 узел: система $M/M/2$, $m = 7$
+	\item 4 узел: система $M/M/2$, $m = 7$
+\end{itemize}
+
+\section{Разомкнутые сети массового обслуживания}
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+		semithick]
+		\tikzstyle{every state}=[fill=white,draw=black,text=black]
+		
+		\node[state] (0) {$0$};
+		\node[state] (1) [right of=0] {$1$};
+		\node[state] (2) [right of=1] {$2$};
+		\node[state] (3) [right of=2] {$3$};
+		\node[state] (4) [right of=3] {$4$};
+		\node[state,draw=white] (5) [right of=4] {$\dots$};
+		\node[state] (100) [right of=5] {$100$};
+		
+		\path 
+		(0) edge [bend left] node {$\lambda$} (1)
+		(1) edge [bend left] node {$\mu$} (0)
+		(1) edge [bend left] node {$\lambda$} (2)
+		(2) edge [bend left] node {$\mu$} (1)
+		(2) edge [bend left] node {$\lambda$} (3)
+		(3) edge [bend left] node {$\mu$} (2)
+		(3) edge [bend left] node {$\lambda$} (4)
+		(4) edge [bend left] node {$\mu$} (3)
+		(4) edge [bend left] node {$\lambda$} (5)
+		(5) edge [bend left] node {$\mu$} (4)
+		(5) edge [bend left] node {$\lambda$} (100)
+		(100) edge [bend left] node {$\mu$} (5);
+		\end{tikzpicture}
+		\caption{Граф состояний}
+		\label{fig:state_graph}
+	\end{center}
+\end{figure}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Результаты}
+		\def\tabcolsep{8pt}
+		\begin{tabular}{|C{6cm}|c|c|c|c|c|}
+			\hline
+			& 1 узел & 2 узел & 3 узел & 4 узел & Вся сеть \\
+			\hline
+			Среднее число требований &  &  &  &  & \\
+			\hline
+			Среднее число ожидающих требований &  &  &  &  & \\
+			\hline
+			Среднее время пребывания &  &  &  &  & \\
+			\hline
+			Среднее время ожидания &  &  &  &  & \\
+			\hline	
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\end{document}

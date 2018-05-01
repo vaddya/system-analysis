@@ -1,0 +1,63 @@
+\include{settings}
+
+\begin{document}
+
+\include{titlepage}
+
+\tableofcontents
+\listoftables
+\listoffigures
+\newpage
+
+\section{Техническое задание}
+
+\paragraph{Вариант 32.} 
+Сравнить средние времена пребывания и средние времена ожидания для разных систем в зависимости от интенсивности потока заявок. Построить соответствующие графики. Какая система лучше (при каких интенсивностях первая система лучше, при каких – вторая)? 
+	
+\section{Исходные данные}
+
+$k$ = 4
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{source}
+	\caption{Исходные данные}
+\end{figure}
+
+
+\section{Сравнение систем массового обслуживания}
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+		semithick]
+		\tikzstyle{every state}=[fill=white,draw=black,text=black]
+		
+		\node[state] (0) {$0$};
+		\node[state] (1) [right of=0] {$1$};
+		\node[state] (2) [right of=1] {$2$};
+		\node[state] (3) [right of=2] {$3$};
+		\node[state] (4) [right of=3] {$4$};
+		\node[state,draw=white] (5) [right of=4] {$\dots$};
+		\node[state] (100) [right of=5] {$100$};
+		
+		\path 
+		(0) edge [bend left] node {$\lambda$} (1)
+		(1) edge [bend left] node {$\mu$} (0)
+		(1) edge [bend left] node {$\lambda$} (2)
+		(2) edge [bend left] node {$\mu$} (1)
+		(2) edge [bend left] node {$\lambda$} (3)
+		(3) edge [bend left] node {$\mu$} (2)
+		(3) edge [bend left] node {$\lambda$} (4)
+		(4) edge [bend left] node {$\mu$} (3)
+		(4) edge [bend left] node {$\lambda$} (5)
+		(5) edge [bend left] node {$\mu$} (4)
+		(5) edge [bend left] node {$\lambda$} (100)
+		(100) edge [bend left] node {$\mu$} (5);
+		\end{tikzpicture}
+		\caption{Граф состояний}
+		\label{fig:state_graph}
+	\end{center}
+\end{figure}
+
+\end{document}

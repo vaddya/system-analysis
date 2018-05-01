@@ -1,0 +1,75 @@
+\include{settings}
+
+\begin{document}
+
+\include{titlepage}
+
+\tableofcontents
+\listoftables
+\listoffigures
+\newpage
+
+\section{Техническое задание}
+
+\paragraph{Вариант 32.} 
+Рассматривается работа столовой самообслуживания. Обеды выдают $K$ поваров. Среднее время выдачи обеда на одного посетителя равно $t_1$ минут. Плотность потока посетителей около $N$ человек в минуту. В очереди могут одновременно стоять не более $m$ человек. В среднем посетитель стоит в очереди $t_2$ минут, после чего покидает столовую. Если посетителя начали обслуживать, то обслуживание не прерывается. На обед посетитель в среднем затрачивает $t_3$ минут. 
+
+Определить, сколько времени потратит посетитель в столовой, если количество мест за столами всегда достаточно для размещения лиц, уже получивших обед. Определить среднее число занятых поваров и среднее число ожидающих посетителей. Определить вероятности того, что посетитель:
+\begin{itemize}
+	\item успешно пообедает;
+	\item уйдет, не дождавшись своей очереди;
+	\item уйдет, не имея возможности встать в очередь;
+\end{itemize} 
+
+\section{Исходные данные}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Исходные данные}
+		\def\tabcolsep{12pt}
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\hline
+			$N$, чел./мин. & $t_1$, мин & $t_2$, мин & $t_3$, мин & $K$, чел. & $m$, чел. \\
+			\hline
+			$1$ & $4$ & $10$ & $10$ & $3$ & $16$ \\
+			\hline	
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\section{Система массового обслуживания}
+
+\begin{figure}[H]
+	\begin{center}
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+		semithick]
+		\tikzstyle{every state}=[fill=white,draw=black,text=black]
+		
+		\node[state] (0) {$0$};
+		\node[state] (1) [right of=0] {$1$};
+		\node[state] (2) [right of=1] {$2$};
+		\node[state] (3) [right of=2] {$3$};
+		\node[state] (4) [right of=3] {$4$};
+		\node[state,draw=white] (5) [right of=4] {$\dots$};
+		\node[state] (100) [right of=5] {$100$};
+		
+		\path 
+		(0) edge [bend left] node {$\lambda$} (1)
+		(1) edge [bend left] node {$\mu$} (0)
+		(1) edge [bend left] node {$\lambda$} (2)
+		(2) edge [bend left] node {$\mu$} (1)
+		(2) edge [bend left] node {$\lambda$} (3)
+		(3) edge [bend left] node {$\mu$} (2)
+		(3) edge [bend left] node {$\lambda$} (4)
+		(4) edge [bend left] node {$\mu$} (3)
+		(4) edge [bend left] node {$\lambda$} (5)
+		(5) edge [bend left] node {$\mu$} (4)
+		(5) edge [bend left] node {$\lambda$} (100)
+		(100) edge [bend left] node {$\mu$} (5);
+		\end{tikzpicture}
+		\caption{Граф состояний}
+		\label{fig:state_graph}
+	\end{center}
+\end{figure}
+
+\end{document}
