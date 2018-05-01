@@ -14,10 +14,24 @@
 [Jupyter](http://nbviewer.jupyter.org/github/vaddya/system-analysis/blob/master/lab3/code/lab3.ipynb) · 
 [Отчет](https://github.com/vaddya/system-analysis/blob/master/lab3/report/lab3.pdf)
 4. __Нелинейное программирование. Условная оптимизация__
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab4/lab4.pdf) · 
+[Jupyter](http://nbviewer.jupyter.org/github/vaddya/system-analysis/blob/master/lab4/code/lab4.ipynb) · 
+[Отчет](https://github.com/vaddya/system-analysis/blob/master/lab4/report/lab4.pdf)
 5. __Динамическое программирование__
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab5/lab5.pdf) · 
+[Отчет](https://github.com/vaddya/system-analysis/blob/master/lab5/report/lab5.pdf)
 6. __Дискретное программирование__
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab6/lab6.pdf) · 
+[Jupyter](http://nbviewer.jupyter.org/github/vaddya/system-analysis/blob/master/lab6/code/lab6.ipynb) · 
+[Отчет](https://github.com/vaddya/system-analysis/blob/master/lab6/report/lab6.pdf)
 7. __Теория расписаний__
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab7/lab7.pdf) · 
+[Отчет](https://github.com/vaddya/system-analysis/blob/master/lab7/report/lab7.pdf)
 8. __Системы массового обслуживания__
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab8/lab8.pdf)
 9. __Сравнение систем массового обслуживания__
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab9/lab9.pdf)
 10. __Разомкнутые сети массового обслуживания__
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab10/lab10.pdf)
 11. __Замкнутые сети массового обслуживания__
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab11/lab11.pdf)
