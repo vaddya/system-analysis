@@ -39,10 +39,39 @@
 
 \section{Система массового обслуживания}
 
+На рис. \ref{fig:structure} изображена структура сети $M/M/3/16$.
 \begin{figure}[H]
-	\begin{center}
-		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
-		semithick]
+	\centering
+	\begin{tikzpicture}[start chain=going right,>=latex,node distance=0pt]
+	\node[rectangle split, minimum height=2cm,draw, rectangle split horizontal,on chain] (wa) {
+		$\max=16$
+		\nodepart{two} $\circ$
+		\nodepart{three} $\circ$
+		\nodepart{four} $\circ$
+	};
+	\draw[<-] (wa.west) -- +(-1.2,0) node[left] {$\lambda$};
+	\draw[->] (wa.north) -- +(45:1.2) coordinate (B0);
+	\node[align=center,left] at (B0) {$\nu$};
+	\draw[->] (wa.east) -- +(45:1.8) coordinate (B1);
+	\draw[->] (wa.east) -- +(0:1.28) coordinate (B2);
+	\draw[->] (wa.east) -- +(-45:1.8) coordinate (B3);
+	\node[draw,rectangle,on chain,minimum size=1cm] at (B1) (se1) {$\mu$};
+	\node[draw,rectangle,on chain,minimum size=1cm] at (B2) (se2) {$\mu$};
+	\node[draw,rectangle,on chain,minimum size=1cm] at (B3) (se3) {$\mu$};
+	\draw[-] (se1.east) --+(-45:1.8) coordinate (C1);
+	\draw[-] (se2.east) --+(0:1.2) coordinate (C2);
+	\draw[-] (se3.east) --+(45:1.8) coordinate (C3);
+	\draw[->] (C2)--+(0:0.5)node[right] (C4) {};
+	\node[draw,rectangle,on chain,minimum size=2cm] at (C4.west) {$+T$};
+	\end{tikzpicture}
+	\caption{Структура сети}
+	\label{fig:structure}
+\end{figure}
+
+На рис. \ref{fig:state_graph} изображен граф состояний рассматриваемой сети.
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.4cm,semithick]
 		\tikzstyle{every state}=[fill=white,draw=black,text=black]
 		
 		\node[state] (0) {$0$};
@@ -50,26 +79,25 @@
 		\node[state] (2) [right of=1] {$2$};
 		\node[state] (3) [right of=2] {$3$};
 		\node[state] (4) [right of=3] {$4$};
-		\node[state,draw=white] (5) [right of=4] {$\dots$};
-		\node[state] (100) [right of=5] {$100$};
+		\node[state,draw=white] (5) [right of=4] {\Large$\dots$};
+		\node[state] (100) [right of=5] {$19$};
 		
 		\path 
 		(0) edge [bend left] node {$\lambda$} (1)
 		(1) edge [bend left] node {$\mu$} (0)
 		(1) edge [bend left] node {$\lambda$} (2)
-		(2) edge [bend left] node {$\mu$} (1)
+		(2) edge [bend left] node {$2\mu$} (1)
 		(2) edge [bend left] node {$\lambda$} (3)
-		(3) edge [bend left] node {$\mu$} (2)
+		(3) edge [bend left] node {$3\mu$} (2)
 		(3) edge [bend left] node {$\lambda$} (4)
-		(4) edge [bend left] node {$\mu$} (3)
+		(4) edge [bend left] node {$3\mu + \nu$} (3)
 		(4) edge [bend left] node {$\lambda$} (5)
-		(5) edge [bend left] node {$\mu$} (4)
+		(5) edge [bend left] node {$3\mu + 2\nu$} (4)
 		(5) edge [bend left] node {$\lambda$} (100)
-		(100) edge [bend left] node {$\mu$} (5);
-		\end{tikzpicture}
-		\caption{Граф состояний}
-		\label{fig:state_graph}
-	\end{center}
+		(100) edge [bend left] node {$3\mu + 16\nu$} (5);
+	\end{tikzpicture}
+	\caption{Граф состояний}
+	\label{fig:state_graph}
 \end{figure}
 
 \end{document}
