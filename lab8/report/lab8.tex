@@ -100,4 +100,78 @@
 	\label{fig:state_graph}
 \end{figure}
 
+Граф гибели и размножения, следовательно можно применить формулу \ref{eq:p} для расчета вероятности нахождения системы в состоянии $i$:
+\begin{equation}
+\label{eq:p}
+P_i = \begin{cases}
+\left( 1 + \sum \limits_{i=1}^{N} \prod \limits_{j=1}^{i} \frac{\lambda_j}{\mu_j} \right)^{-1} , &\text{если } i = 0 \\
+\prod \limits_{j=1}^{i} \frac{\lambda_j}{\mu_j}, &\text{если } i \neq 0
+\end{cases}
+\end{equation}
+
+В таблице \ref{tab:data} приведена вероятность каждого из состояний системы, количество заявок, находящихся в очереди, а так же число занятых каналов.
+\begin{table}[H]
+	\centering
+	\def\arraystretch{1.1}
+	\def\tabcolsep{25pt}
+	\pgfplotstabletypeset[col sep=comma,
+		columns={state, prob, busy, queue},
+		column type/.add={|c|}{},
+		columns/state/.style={fixed, column name={$i$}},
+		columns/prob/.style={fixed, precision=5, zerofill, column name={$P_i$}},
+		columns/queue/.style={fixed, column name={$\overline{n_\text{о}}_i$}},
+		columns/busy/.style={fixed, column name={$\overline{k_\text{з}}_i$}},
+		every nth row={1}{before row=\hline},
+		every head row/.style={before row=\hline, after row=\hline, },
+		every last row/.style={after row=\hline}
+	]{../data/data.csv}
+	\caption{Вероятности состояний системы}
+	\label{tab:data}
+\end{table}
+
+Из найденных вероятностей найдем характеристики системы массового обслуживания:
+\begin{itemize}
+	\item Сумма вероятностей $\sum\limits_{i=0}^{N} P_i = 1$, значит вероятности найдены верно.
+	
+	\item Среднее количество занятых каналов найдем как сумму поэлементных произведений вероятностей состояний на количество занятых каналов в этих состояних: 
+	\begin{displaymath}
+		\overline{k_\text{з}} = \sum \limits_{i=0}^{N} \overline{k_\text{з}}_i \approx 2.80873
+	\end{displaymath}
+	
+	\item Коэффициент загрузки каналов найдем как отношение среднего количества занятых каналов к общему количеству каналов в системе:
+	\begin{displaymath}
+		\eta = \dfrac{\overline{k_\text{з}}}{k} \approx 0.93624
+	\end{displaymath}
+	
+	\item Среднюю длину очереди найдем как сумму поэлементных произведений вероятностей состояний на длину очереди в этих состояних: 
+	\begin{displaymath}
+		\overline{n_\text{о}} = \sum \limits_{i=0}^{N} \overline{n_\text{о}}_i \approx 2.97698
+	\end{displaymath}
+	
+	\item Вероятность отказа из-за заполненной очереди равна вероятности нахождения системы в последнем состоянии: 
+	\begin{displaymath}
+		P_\text{отк} \approx 0.00012
+	\end{displaymath}
+	
+	\item Вероятность ухода из очереди равна отношению интенсивности ухода к интенсивности поступления заявок, умноженному на среднюю длину очереди: 
+	\begin{displaymath}
+		P_\text{ух} \approx 0.29770
+	\end{displaymath}
+	
+	\item Вероятность успешного обслуживания найдем как произведение вероятностей отстутствия отказа обслуживания и ухода заявки из очереди: 
+	\begin{displaymath}
+		P_\text{усп} = (1 - P_\text{отк}) \cdot (1 - P_\text{ух}) \approx 0.70222
+	\end{displaymath}
+	
+	\item Среднее количество человек в системе найдем как сумму средней длины очереди и среднего количества занятых каналов: 
+	\begin{displaymath}
+		j \approx 5.78571
+	\end{displaymath}
+	
+	\item Среднее время нахождения в системе найдем с помощью закону Литтла, прибавив время обеда, умноженное на вероятность успешного обслуживания:
+	\begin{displaymath}
+		t_c = \dfrac{j}{\lambda} + T = \dfrac{j}{\lambda} + P_\text{усп} \cdot t_3 \approx 12.80789
+	\end{displaymath}
+\end{itemize}
+	
 \end{document}
