@@ -16,21 +16,90 @@
 	
 \section{Исходные данные}
 
-$k$ = 4
-
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{source}
-	\caption{Исходные данные}
+	\begin{subfigure}{\textwidth}
+		\centering
+		\begin{tikzpicture}[start chain=going right,>=latex,node distance=0pt]
+			\node[rectangle split, minimum height=2cm, draw, rectangle split horizontal, on chain] (wa) {
+				$\infty$
+				\nodepart{two} $\circ$
+				\nodepart{three} $\circ$
+				\nodepart{four} $\circ$
+			};
+			\draw[<-] (wa.west) -- +(-1.2,0) node[left] {$\lambda$};
+			\draw[->] (wa.east) -- +(60:2.1) coordinate (B1);
+			\draw[->] (wa.east) -- +(30:1.2) coordinate (B2);
+			\draw[->] (wa.east) -- +(-30:1.2) coordinate (B3);
+			\draw[->] (wa.east) -- +(-60:2.1) coordinate (B4);
+			\node[draw,rectangle,on chain,minimum size=1cm] at (B1) (se1) {$\mu$};
+			\node[draw,rectangle,on chain,minimum size=1cm] at (B2) (se2) {$\mu$};
+			\node[draw,rectangle,on chain,minimum size=1cm] at (B3) (se3) {$\mu$};
+			\node[draw,rectangle,on chain,minimum size=1cm] at (B4) (se4) {$\mu$};
+			\draw[-] (se1.east) --+(-60:2.1) coordinate (C1);
+			\draw[-] (se2.east) --+(-30:1.2) coordinate (C2);
+			\draw[-] (se3.east) --+(30:1.2) coordinate (C3);
+			\draw[-] (se4.east) --+(60:2.1) coordinate (C4);
+			\draw[->] (C2)--+(0:1.2)node[right] (C4) {};
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}{\textwidth}
+		\centering
+		\begin{tikzpicture}[start chain=going right,>=latex,node distance=0pt]
+			\node[rectangle split, minimum height=2cm, draw, rectangle split horizontal, on chain] (queue1) {
+				$\infty$
+				\nodepart{two} $\circ$
+				\nodepart{three} $\circ$
+				\nodepart{four} $\circ$
+			};
+			\draw[<-] (queue1.west) -- +(-1.2,0) node[left] {$\lambda$};
+			\draw[->] (queue1.east) -- +(60:2.1) coordinate (B1);
+			\draw[->] (queue1.east) -- +(30:1.2) coordinate (B2);
+			\draw[->] (queue1.east) -- +(-30:1.2) coordinate (B3);
+			\draw[->] (queue1.east) -- +(-60:2.1) coordinate (B4);
+			\node[draw,rectangle,on chain,minimum size=1cm] at (B1) (chan1) {$2\mu$};
+			\node[draw,rectangle,on chain,minimum size=1cm] at (B2) (chan2) {$2\mu$};
+			\node[draw,rectangle,on chain,minimum size=1cm] at (B3) (chan3) {$2\mu$};
+			\node[draw,rectangle,on chain,minimum size=1cm] at (B4) (chan4) {$2\mu$};
+			\draw[-] (chan1.east) --+(-60:2.1) coordinate (C1);
+			\draw[-] (chan2.east) --+(-30:1.2) coordinate (C2);
+			\draw[-] (chan3.east) --+(30:1.2) coordinate (C3);
+			\draw[-] (chan4.east) --+(60:2.1) coordinate (C4);
+			\draw[->] (C2)--+(0:1.2)node[right] (C5) {};
+			\node[rectangle split, minimum height=2cm, draw, rectangle split horizontal, on chain] at (C5.west) (queue2) {
+				$\infty$
+				\nodepart{two} $\circ$
+				\nodepart{three} $\circ$
+				\nodepart{four} $\circ$
+			};
+			\draw[->] (queue2.east) -- +(60:2.1) coordinate (D1);
+			\draw[->] (queue2.east) -- +(30:1.2) coordinate (D2);
+			\draw[->] (queue2.east) -- +(-30:1.2) coordinate (D3);
+			\draw[->] (queue2.east) -- +(-60:2.1) coordinate (D4);
+			\node[draw,rectangle,on chain,minimum size=1cm] at (D1) (chan5) {$2\mu$};
+			\node[draw,rectangle,on chain,minimum size=1cm] at (D2) (chan6) {$2\mu$};
+			\node[draw,rectangle,on chain,minimum size=1cm] at (D3) (chan7) {$2\mu$};
+			\node[draw,rectangle,on chain,minimum size=1cm] at (D4) (chan8) {$2\mu$};
+			\draw[-] (chan5.east) --+(-60:2.1) coordinate (E1);
+			\draw[-] (chan6.east) --+(-30:1.2) coordinate (E2);
+			\draw[-] (chan7.east) --+(30:1.2) coordinate (E3);
+			\draw[-] (chan8.east) --+(60:2.1) coordinate (E4);
+			\draw[->] (E4)--+(0:1.2)node[right] (E5) {};
+		\end{tikzpicture}
+		\caption{}
+	\end{subfigure}
+	\caption{Структуры сравниваемых сетей}
+	\label{fig:structure}
 \end{figure}
 
 
 \section{Сравнение систем массового обслуживания}
 
+\subsection{$M/M/4$}
+
 \begin{figure}[H]
-	\begin{center}
-		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
-		semithick]
+	\centering
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.4cm,semithick]
 		\tikzstyle{every state}=[fill=white,draw=black,text=black]
 		
 		\node[state] (0) {$0$};
@@ -38,26 +107,65 @@ $k$ = 4
 		\node[state] (2) [right of=1] {$2$};
 		\node[state] (3) [right of=2] {$3$};
 		\node[state] (4) [right of=3] {$4$};
-		\node[state,draw=white] (5) [right of=4] {$\dots$};
-		\node[state] (100) [right of=5] {$100$};
+		\node[state,draw=white] (5) [right of=4] {\Large$\dots$};
 		
 		\path 
 		(0) edge [bend left] node {$\lambda$} (1)
 		(1) edge [bend left] node {$\mu$} (0)
 		(1) edge [bend left] node {$\lambda$} (2)
-		(2) edge [bend left] node {$\mu$} (1)
+		(2) edge [bend left] node {$2\mu$} (1)
 		(2) edge [bend left] node {$\lambda$} (3)
-		(3) edge [bend left] node {$\mu$} (2)
+		(3) edge [bend left] node {$3\mu$} (2)
 		(3) edge [bend left] node {$\lambda$} (4)
-		(4) edge [bend left] node {$\mu$} (3)
+		(4) edge [bend left] node {$4\mu$} (3)
 		(4) edge [bend left] node {$\lambda$} (5)
-		(5) edge [bend left] node {$\mu$} (4)
-		(5) edge [bend left] node {$\lambda$} (100)
-		(100) edge [bend left] node {$\mu$} (5);
-		\end{tikzpicture}
-		\caption{Граф состояний}
-		\label{fig:state_graph}
-	\end{center}
+		(5) edge [bend left] node {$4\mu$} (4);
+	\end{tikzpicture}
+	\caption{Граф состояний}
+	\label{fig:state_graph}
 \end{figure}
+
+\begin{itemize}
+	\item Коэффициенты использования:
+		\begin{displaymath}
+			\rho = \dfrac{\lambda}{\mu}\text{,  } \rho_c = \dfrac{\lambda}{K \cdot \mu}
+		\end{displaymath}
+	\item Вероятность нахождения системы в состоянии $i$:
+		\begin{displaymath}
+			P_i = 
+			\begin{cases}
+				\left( 1 + \sum \limits_{j=1}^{K} \dfrac{\rho^j}{j!} + \dfrac{\rho^{K+1}}{K! \cdot (K - \rho)} \right)^{-1} &\text{ если } i = 0 \\[15pt]
+				\dfrac{\rho^i \cdot P_0}{i!} &\text{ если } i \leq K \text{ и } i \neq 0 \\[15pt]
+				\dfrac{\rho^i \cdot P_0}{K! \cdot K^{i-K}} &\text{ если } i > K
+			\end{cases}
+		\end{displaymath}
+		
+	\item Средняя длина очереди:
+		\begin{displaymath}
+			\overline{n_\text{о}} = \dfrac{\rho^{K+1} \cdot P_0}{K \cdot (1 - \rho_c)^2 \cdot K!}
+		\end{displaymath}
+		
+	\item Среднее число занятых каналов:
+		\begin{displaymath}
+			\overline{K_\text{з}} = \rho
+		\end{displaymath}
+		
+	\item Среднее число клиентов в системе:
+		\begin{displaymath}
+			\overline{j} = \overline{n_\text{о}} + \overline{K_\text{з}}
+		\end{displaymath}
+		
+	\item Среднее время ожидания:
+		\begin{displaymath}
+			t_\text{ож} = \dfrac{\overline{n_\text{о}}}{\lambda} = \dfrac{\overline{n_\text{о}}}{\rho \cdot \mu}
+		\end{displaymath}
+		
+	\item Среднее время обслуживания:
+		\begin{displaymath}
+			t_\text{c} = \dfrac{\overline{j}}{\lambda} = \dfrac{\overline{j}}{\rho \cdot \mu} = t_\text{ож} + \dfrac{1}{\mu}
+		\end{displaymath}
+\end{itemize}
+
+\subsection{M/M/4 + M/M/4}
 
 \end{document}
