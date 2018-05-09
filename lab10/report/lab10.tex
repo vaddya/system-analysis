@@ -43,65 +43,115 @@
 			0 & \sfrac{9}{14} & 0 & \sfrac{5}{14} & 0
 		\end{pmatrix}
 	\end{displaymath}
-	\item 1 узел: система $M/M/2$, $m = 10$
-	\item 2 узел: система $M/M/1$, $m = 3$
-	\item 3 узел: система $M/M/2$, $m = 7$
-	\item 4 узел: система $M/M/2$, $m = 7$
+	\item 1 узел: система $M/M/2$, $\mu = 10$
+	\item 2 узел: система $M/M/1$, $\mu = 3$
+	\item 3 узел: система $M/M/2$, $\mu = 7$
+	\item 4 узел: система $M/M/2$, $\mu = 7$
 \end{itemize}
 
-\section{Разомкнутые сети массового обслуживания}
+\section{Разомкнутая сеть массового обслуживания}
 
+\subsection{Граф сети}
+
+На рис. \ref{fig:net_graph} изображен граф сети массового обслуживания, составленный по матрице передач $\Pi$.
+\vspace{-0.5cm}
 \begin{figure}[H]
 	\begin{center}
-		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm,
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.5cm,
 		semithick]
-		\tikzstyle{every state}=[fill=white,draw=black,text=black]
-		
-		\node[state] (0) {$0$};
-		\node[state] (1) [right of=0] {$1$};
-		\node[state] (2) [right of=1] {$2$};
-		\node[state] (3) [right of=2] {$3$};
-		\node[state] (4) [right of=3] {$4$};
-		\node[state,draw=white] (5) [right of=4] {$\dots$};
-		\node[state] (100) [right of=5] {$100$};
-		
-		\path 
-		(0) edge [bend left] node {$\lambda$} (1)
-		(1) edge [bend left] node {$\mu$} (0)
-		(1) edge [bend left] node {$\lambda$} (2)
-		(2) edge [bend left] node {$\mu$} (1)
-		(2) edge [bend left] node {$\lambda$} (3)
-		(3) edge [bend left] node {$\mu$} (2)
-		(3) edge [bend left] node {$\lambda$} (4)
-		(4) edge [bend left] node {$\mu$} (3)
-		(4) edge [bend left] node {$\lambda$} (5)
-		(5) edge [bend left] node {$\mu$} (4)
-		(5) edge [bend left] node {$\lambda$} (100)
-		(100) edge [bend left] node {$\mu$} (5);
+			\tikzstyle{every state}=[fill=white,draw=black,text=black]
+			
+			\node[state] (0) {$0$};
+			\node[state] (1) [right of=0] {$1$};
+			\node[state] (3) [right of=1] {$3$};
+			\node[state] (2) [above of=3] {$2$};
+			\node[state] (4) [above of=1] {$4$};
+			
+			\path 
+			(0) edge [bend left] node {$ $} (1)
+			(1) edge [bend left] node {$\sfrac{3}{4}$} (0)
+			(1) edge [bend left] node {$\sfrac{1}{4}$} (3)
+			(3) edge [bend left] node {$\sfrac{9}{17}$} (1)
+			(3) edge [right] node {$\sfrac{8}{17}$} (2)
+			(2) edge node {$ $} (4)
+			(4) edge [left] node {$\sfrac{9}{14}$} (1)
+			(4) edge node {$\sfrac{5}{14}$} (3);
 		\end{tikzpicture}
-		\caption{Граф состояний}
-		\label{fig:state_graph}
+		\caption{Граф сети}
+		\label{fig:net_graph}
 	\end{center}
 \end{figure}
+\vspace{-1cm}
 
+\subsection{Интенсивности потоков в узлах}
+
+Найдем коэффициенты передачи от источника к $i$-ому узлу $\alpha_i = \sfrac{\lambda_i}{\lambda_0}$:
+\begin{displaymath}
+	\begin{cases}
+		\lambda_0 = \sfrac{3}{4} \lambda_1 \\
+		\lambda_1 = \lambda_0 + \sfrac{9}{17} \lambda_3 + \sfrac{9}{14} \lambda_4 \\
+		\lambda_2 = \sfrac{8}{17} \lambda_3 \\
+		\lambda_3 = \sfrac{1}{4} \lambda_1 + \sfrac{5}{14} \lambda_4 \\
+		\lambda_4 = \lambda_2
+	\end{cases} \Leftrightarrow \begin{cases}
+		\lambda_1 = \sfrac{4}{3} \lambda_0 \\
+		\lambda_2 = \sfrac{56}{297} \lambda_0 \\
+		\lambda_3 = \sfrac{119}{297} \lambda_0 \\
+		\lambda_4 = \sfrac{56}{297} \lambda_0
+	\end{cases} \Rightarrow \begin{cases}
+		\alpha_1 = \sfrac{4}{3} \\
+		\alpha_2 = \sfrac{56}{297} \\
+		\alpha_3 = \sfrac{119}{297} \\
+		\alpha_4 = \sfrac{56}{297}
+	\end{cases}
+\end{displaymath}
+
+\subsection{Наличие установившегося режима}
+
+Проверим выполнение условия наличия установившегося режима сети:
+\begin{displaymath}
+	\lambda_0 < \min \limits_{(j)} \left( \frac{m_j \cdot \mu_j}{\alpha_j} \right) = \min \limits_{(j)} \left( \beta_j \right)
+\end{displaymath}
+
+\begin{displaymath}
+	\begin{cases}
+		\beta_1 = \sfrac{2 \cdot 10 \cdot 4}{3} \approx 26.6 \\
+		\beta_2 = \sfrac{1 \cdot 3 \cdot 297}{56} \approx 15.9 \\
+		\beta_3 = \sfrac{2 \cdot 7 \cdot 297}{119} \approx 34.9 \\
+		\beta_4 = \sfrac{2 \cdot 7 \cdot 297}{56} \approx 74.3
+	\end{cases}	
+\end{displaymath}
+
+Условие установившегося режима выполняется, т.к. все $b_i < \lambda_0 = 3.5$.
+
+\subsection{Разрезание сети}
+
+Выполним разрезание сети и рассчитаем локальные показатели узлов сети, после чего произведем <<сборку>> сети, рассчитав интегральные показатели сети по теореме Джонсона. В таблице \ref{tab:results} приведены результаты рассчитанных показателей для отдельных узлов и для всей сети.
 \begin{table}[H]
 	\begin{center}
 		\caption{Результаты}
+		\label{tab:results}
 		\def\tabcolsep{8pt}
 		\begin{tabular}{|C{6cm}|c|c|c|c|c|}
 			\hline
 			& 1 узел & 2 узел & 3 узел & 4 узел & Вся сеть \\
 			\hline
-			Среднее число требований &  &  &  &  & \\
+			Ср. число требований $\overline{n}$ & $0.4945$ & $0.0620$ & $0.2024$ & $0.0945$ & $0.8524$ \\
 			\hline
-			Среднее число ожидающих требований &  &  &  &  & \\
+			Ср. число ожидающих требований $\overline{l}$ & $0.0279$ & $0.0620$ & $0.0020$ & $0.0002$ & $0.0911$ \\
 			\hline
-			Среднее время пребывания &  &  &  &  & \\
+			Ср. время пребывания $\overline{t_\text{с}}$ & $0.1068$ & $0.4273$ & $0.1443$ &  $0.1432$ & $0.0615$ \\
 			\hline
-			Среднее время ожидания &  &  &  &  & \\
+			Ср. время ожидания $\overline{t_\text{ож}}$ & $0.0068$ & $0.2820$ & $0.0014$ & $0.0003$ & $0.3064$ \\
 			\hline	
 		\end{tabular}
 	\end{center}
 \end{table}
+
+Из рассчитанных показателей можно сделать вывод, что по среднему число требований $\overline{n}$:
+\begin{itemize}
+	\item Наиболее нагруженным узлом является 1 узел;
+	\item Наименее нагруженным узлом является 2 узел.
+\end{itemize}
 
 \end{document}
