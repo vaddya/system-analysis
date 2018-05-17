@@ -5,7 +5,6 @@
 \include{titlepage}
 
 \tableofcontents
-\listoftables
 \listoffigures
 \newpage
 
@@ -92,10 +91,12 @@
 	\label{fig:structure}
 \end{figure}
 
-
 \section{Сравнение систем массового обслуживания}
 
-\subsection{$M/M/4$}
+\subsection{Однофазная система массового обслуживания}
+\label{sec:onephase}
+
+На рис. \ref{fig:state_graph} приведен граф состояний системы $M/M/4$.
 
 \begin{figure}[H]
 	\centering
@@ -125,10 +126,11 @@
 	\label{fig:state_graph}
 \end{figure}
 
+\noindent Показатели системы $M/M/K$ рассчитываются по формулам:
 \begin{itemize}
 	\item Коэффициенты загруженности системы:
 		\begin{displaymath}
-			\rho = \dfrac{\lambda}{\mu}\text{,  } \rho_c = \dfrac{\lambda}{K \cdot \mu}
+			\rho = \dfrac{\lambda}{\mu}, \quad \rho_c = \dfrac{\lambda}{K \cdot \mu}
 		\end{displaymath}
 	\item Вероятность нахождения системы в состоянии $i$:
 		\begin{displaymath}
@@ -166,6 +168,78 @@
 		\end{displaymath}
 \end{itemize}
 
-\subsection{$M/M/4 + M/M/4$}
+\newpage
+
+\subsection{Двухфазная система массового обслуживания}
+
+Система состоит из двух последовательных фаз с бесконечными очередями, следовательно можно рассмотреть по-отдельности первую и вторую фазы, а потом сложить их показатели. Так как эти фазы одинаковы, то достаточно найти показатели для одной фазы и умножить на $2$. Характеристики фазы рассчитываются по тем же формулам, что и показатели для однофазной системы массового обслуживания из пункте \ref{sec:onephase}. На рис. \ref{fig:state_graph_2} приведен граф состояний двухфазной системы массового обслуживания.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.4cm,semithick]
+	\tikzstyle{every state}=[fill=white,draw=black,text=black]
+	
+	\node[state] (0) {$0$};
+	\node[state] (1) [right of=0] {$1$};
+	\node[state] (2) [right of=1] {$2$};
+	\node[state,draw=white] (3) [right of=2] {\Large$\dots$};
+	\node[state] (8) [right of=3] {$8$};
+	\node[state] (9) [right of=8] {$9$};
+	\node[state,draw=white] (10) [right of=9] {\Large$\dots$};
+	
+	\path 
+	(0) edge [bend left] node {$\lambda$} (1)
+	(1) edge [bend left] node {$2\mu$} (0)
+	(1) edge [bend left] node {$\lambda$} (2)
+	(2) edge [bend left] node {$4\mu$} (1)
+	(2) edge [bend left] node {$\lambda$} (3)
+	(3) edge [bend left] node {$6\mu$} (2)
+	(3) edge [bend left] node {$\lambda$} (4)
+	(8) edge [bend left] node {$16\mu$} (3)
+	(8) edge [bend left] node {$\lambda$} (9)
+	(9) edge [bend left] node {$16\mu$} (8)
+	(9) edge [bend left] node {$\lambda$} (10)
+	(10) edge [bend left] node {$16\mu$} (9);
+	\end{tikzpicture}
+	\caption{Граф состояний}
+	\label{fig:state_graph_2}
+\end{figure}
+
+\subsection{Сравнение систем}
+
+Для начала рассмотрим зависимость среднего времени пребывания в сети $t_\text{с}$ от интенсивности обслуживания $\mu$ и интенсивности потока заявок $\lambda$. На рис. \ref{fig:tgrid} изображена данная зависимость для однофазной системы.
+
+\begin{figure}[H]
+	\vspace{-0.5cm}
+	\centering
+	\includegraphics[width=0.95\textwidth]{tgrid}
+	\caption{Зависимость $t_\text{с}$ от $\mu$ и $\lambda$ для однофазной системы}
+	\label{fig:tgrid}
+	\vspace{-0.5cm}
+\end{figure}
+
+\newpage
+
+Зафиксируем $\mu = 5$ и рассмотрим зависимость среднего времени ожидания $t_\text{ож}$ от интенсивности потока заявок $\lambda$. На рис. \ref{fig:tw} изображена данная зависимость для обеих систем.
+\begin{figure}[H]
+	\vspace{-0.4cm}
+	\centering
+	\includegraphics[width=0.85\textwidth]{tw}
+	\caption{Зависимость $t_\text{ож}$ от $\lambda$}
+	\label{fig:tw}
+	\vspace{-0.3cm}
+\end{figure}
+
+Рассмотрим зависимость среднего времени пребывания в системе $t_\text{с}$ от интенсивности потока заявок $\lambda$ при $\mu = 5$. На рис. \ref{fig:t} изображена данная зависимость для обеих систем.
+\begin{figure}[H]
+	\vspace{-0.4cm}
+	\centering
+	\includegraphics[width=0.85\textwidth]{t}
+	\caption{Зависимость $t_\text{с}$ от $\lambda$}
+	\label{fig:t}
+	\vspace{-0.3cm}
+\end{figure}
+
+Из графиков можно сделать вывод, что среднее время ожидания и обслуживания в двухфазной системе растет медленнее, чем в однофазной, следовательно по данным параметрам она является предпочтительной.
 
 \end{document}
