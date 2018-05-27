@@ -28,10 +28,18 @@
 [Задание](https://github.com/vaddya/system-analysis/blob/master/lab7/lab7.pdf) · 
 [Отчет](https://github.com/vaddya/system-analysis/blob/master/lab7/report/lab7.pdf)
 8. __Системы массового обслуживания:__
-[Задание](https://github.com/vaddya/system-analysis/blob/master/lab8/lab8.pdf)
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab8/lab8.pdf) · 
+[Jupyter](http://nbviewer.jupyter.org/github/vaddya/system-analysis/blob/master/lab8/code/lab8.ipynb) · 
+[Отчет](https://github.com/vaddya/system-analysis/blob/master/lab8/report/lab8.pdf)
 9. __Сравнение систем массового обслуживания:__
-[Задание](https://github.com/vaddya/system-analysis/blob/master/lab9/lab9.pdf)
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab9/lab9.pdf) · 
+[Jupyter](http://nbviewer.jupyter.org/github/vaddya/system-analysis/blob/master/lab9/code/lab9.ipynb) · 
+[Отчет](https://github.com/vaddya/system-analysis/blob/master/lab9/report/lab9.pdf)
 10. __Разомкнутые сети массового обслуживания:__
-[Задание](https://github.com/vaddya/system-analysis/blob/master/lab10/lab10.pdf)
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab10/lab10.pdf) · 
+[Jupyter](http://nbviewer.jupyter.org/github/vaddya/system-analysis/blob/master/lab10/code/lab10.ipynb) · 
+[Отчет](https://github.com/vaddya/system-analysis/blob/master/lab10/report/lab10.pdf)
 11. __Замкнутые сети массового обслуживания:__
-[Задание](https://github.com/vaddya/system-analysis/blob/master/lab11/lab11.pdf)
+[Задание](https://github.com/vaddya/system-analysis/blob/master/lab11/lab11.pdf) · 
+[Jupyter](http://nbviewer.jupyter.org/github/vaddya/system-analysis/blob/master/lab11/code/lab11.ipynb) · 
+[Отчет](https://github.com/vaddya/system-analysis/blob/master/lab11/report/lab11.pdf)
