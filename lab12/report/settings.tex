@@ -13,6 +13,8 @@
 \usepackage{chngcntr}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{tabu}
+\usepackage{longtable}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \usepackage{multicol}
 \usepackage{multirow}
@@ -31,8 +33,8 @@
 \lstdefinelanguage{none}{}
 
 \lstset{
-	language={Python},
-	inputpath={../},
+	language={matlab},
+	inputpath={../src/},
 	backgroundcolor=\color{white},
 	commentstyle=\color{green},
 	keywordstyle=\color{blue},
@@ -52,12 +54,22 @@
 	frame=single,
 	morekeywords={},
 	deletekeywords={},
+	sensitive=true,
 	extendedchars=true,
 	columns=fullflexible,
 	inputencoding=utf8/cp1251,
 	literate=%
-		{~}{{\raise.25ex\hbox{$\mathtt{\sim}$}}}{1}
+		{~}{{\raise.25ex\hbox{$\mathtt{\sim}$}}}{1}%
+		{-}{-}{1}
 }
+
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\thefigure}{\arabic{figure}}
 
 \titleformat*{\section}{\large\bfseries} 
 \titleformat*{\subsection}{\normalsize\bfseries} 
