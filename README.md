@@ -41,3 +41,4 @@
 [Задание](https://github.com/vaddya/system-analysis/blob/master/lab11/lab11.pdf) · 
 [Jupyter](http://nbviewer.jupyter.org/github/vaddya/system-analysis/blob/master/lab11/code/lab11.ipynb) · 
 [Отчет](https://github.com/vaddya/system-analysis/blob/master/lab11/report/lab11.pdf)
+12. __Многокритериальная оптимизация__
